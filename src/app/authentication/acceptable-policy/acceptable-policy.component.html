@@ -1,0 +1,11 @@
+<!-- <div class="container" style="width:100% !important;height:100vh !important; overflow: hidden !important">
+  <embed  src="/assets/Acceptable Use Policy - July 2019.pdf" height="100%" width="100%" type="application/pdf">
+</div> -->
+<pdf-viewer src="/assets/Acceptable Use Policy - July 2019.pdf" (after-load-complete)="showNote($event)" [render-text]="true" style="display: block;"></pdf-viewer>
+<div [hidden]="!show" class=" container mb-3">
+    <div class="row note-section">
+        <div class="text-container bg">
+                Note: If you want to remove your private information from Simustream, please send us an email at privacypolicy@simustream.com
+        </div>
+    </div>
+</div>

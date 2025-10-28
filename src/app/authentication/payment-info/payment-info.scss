@@ -1,0 +1,86 @@
+.sign-up-form-section {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  position: relative;
+  height: 100vh;
+  align-items: center;
+}
+
+.background-page {
+  background: #5579F3 !important
+}
+
+.pricingsideimgx {
+  position: absolute;
+  left: 0;
+  top: 35%;
+  width: 150px;
+}
+
+.pricingsideimgy {
+  position: absolute;
+  right: 0;
+  top: 35%;
+  width: 150px;
+}
+
+.pricingsideimg3 {
+  display: none;
+}
+
+.logo-head{
+    position: absolute;
+    top: 25px;
+    padding-left: 90px;
+    padding-bottom: 25px;
+    .logo{
+        float: left;
+      }
+  }
+
+.content-left {
+  float: left;
+}
+
+.go-back {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  padding: 10px !important;
+
+  .go-back-button {
+    vertical-align: middle !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    border-radius: 50px !important;
+    border-color: white !important;
+
+    &:hover {
+      border-radius: 50px !important;
+      background-color: rgba(85, 121, 243, 0.1) !important;
+    }
+  }
+}
+
+.back-arrow {
+  height: 15px;
+  width: 22px;
+  margin-bottom: 3px;
+}
+
+.sign-box {
+  margin-top: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 52px;
+  margin-bottom: 35px !important
+}
+
+.error-handle{
+  margin-top: 4px;
+  margin-bottom: 4px;
+  p{
+    margin-bottom: 0px !important
+  }
+}

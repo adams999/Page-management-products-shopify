@@ -1,0 +1,394 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+  //CSS
+
+}
+
+@media (min-width: 1201px) {
+  .form-group input.form-control.time {
+    padding: 10px !important;
+    width: 80px !important
+  }
+
+  //CSS
+
+}
+
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .card{
+    .card-body.stream-products{
+      font-size: 15px !important;
+      padding-top: 20px !important;
+    }
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .default-list-products-card {
+    font-size: 14px;
+  }
+
+  //CSS
+  .form-group input.form-control.time {
+    padding: 5px !important;
+    width: 54px !important
+  }
+
+}
+
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+@media (min-width: 768px) and (max-width: 1105px) {
+  div.stream-header {
+    max-width: 25% !important;
+    min-width: 25% !important;
+  }
+
+  div.stream-statistics {
+    max-width: 75% !important;
+    min-width: 75% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  div.card-count {
+    max-width: 50% !important;
+    min-width: 50% !important;
+  }
+
+  //CSS
+  div.active-list-filters {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  div.stream-header {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  div.stream-statistics {
+    max-width: 100% !important;
+    min-width: 100% !important;
+    margin-top: 1.5rem;
+  }
+
+  .bread-crumb {
+    .bread-name {
+      font-size: 10px !important;
+    }
+
+    .custom-display {
+      display: block !important
+    }
+
+    .selected-bread-crumb {
+      display: block !important
+    }
+  }
+
+  div.crumb-head {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  div.full-width {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .card.default-card {
+    img {
+      height: 140px !important;
+    }
+
+    .card-body {
+      font-size: 12px !important;
+    }
+  }
+
+  .display-table {
+    display: table !important;
+    border-spacing: 5px;
+  }
+  .products-column {
+    display: table-footer-group;
+
+    button.add-item {
+      position: relative !important;
+      right: 6px !important;
+      bottom: 42px !important;
+      float: right;
+    }
+  }
+  .page-bottom {
+    padding-right: 5px !important;
+    padding-left: 4px !important;
+    padding-top: 0 !important;
+  }
+  .video-column {
+    display: table-header-group;
+
+    .box {
+      width: max-content !important;
+      // top: 253px !important;
+    }
+  }
+  .crumb-head {
+    padding-left: 19px !important;
+    padding-right: 19px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 878px) {
+  div.count-item {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .active-list-filters {
+    .form-row {
+      .search-form {
+        width: 100%;
+        margin-bottom: 5px;
+        margin-right: 0 !important;
+        .has-feedback {
+          span {
+            right: 0px !important
+          }
+        }
+      }
+      .filter-form {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 651px) {
+  div.count-item {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .active-list-filters {
+    .form-row {
+      .search-form {
+        width: 100%;
+        margin-bottom: 5px;
+        margin-right: 0 !important;
+        .has-feedback {
+          span {
+            right: 0px !important;
+          }
+        }
+      }
+      .filter-form {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 559px) {
+  .form-row {
+    float: none !important;
+    margin-right: 0 !important;
+    margin-top: 8px;
+    .dropdown.filter {
+      left: unset !important;
+    }
+    .form-group.form-filter {
+      width: 100%;
+
+      .btn-w-100 {
+        width: 100%;
+      }
+    }
+    .form-filter.btn-filter {
+      margin-right: 0 !important;
+      margin-bottom: 6px !important;
+    }
+  }
+
+  .active-list-filters {
+    .form-row {
+      .search-form {
+        width: 100%;
+        margin-bottom: 5px;
+        margin-right: 0 !important;
+        .has-feedback {
+          span.form-control-feedback {
+            top: 9px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 440px) {
+  .btn-w-100 {
+    width: 100%;
+  }
+  .btn-cancel {
+    margin-top: 0.5rem
+  }
+}
+
+@media (min-width: 320px) and (max-width: 410px) {
+  .video-column {
+    display: table-header-group;
+    .box {
+      width: calc(100vw - 78%) !important;
+      // top: 338px !important;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 355px) {
+  .form-group input.form-control.time {
+    padding: 5px !important;
+    width: 63px !important
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  div.head-text {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+  .search-form-row {
+    width: 100%;
+    float: none !important;
+    .search-form {
+      width: 100%;
+      margin-right: 11px !important;
+    }
+    .has-feedback {
+      width: 100%;
+    }
+  }
+  .card.default-card {
+    img {
+      height: 140px !important;
+    }
+    .card-body {
+      font-size: 11px;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 672px) {
+  .bread-crumb {
+    .bread-name {
+      font-size: 10px !important;
+    }
+    .custom-display {
+      display: block !important
+    }
+    .selected-bread-crumb {
+      display: block !important
+    }
+  }
+  div.crumb-head {
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  //CSS
+}
+
+@media (min-width: 411px) and (max-width: 672px) {
+  .video-column {
+    .box {
+      // top: 311px !important;
+    }
+  }
+}
+
+/* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  //CSS
+
+}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .stream-statistics {
+    margin-top: 1.5rem;
+  }
+  .stream-total-sales {
+    margin-top: 0.5rem;
+  }
+  .display-table {
+    display: table !important;
+    border-spacing: 5px;
+  }
+  .products-column {
+    display: table-footer-group;
+    button.add-item {
+      position: relative !important;
+      right: 6px !important;
+      bottom: 42px !important;
+      float: right;
+    }
+  }
+  .page-bottom {
+    padding-right: 5px !important;
+    padding-left: 4px !important;
+    padding-top: 0 !important;
+  }
+  .video-column {
+    display: table-header-group;
+    .box {
+      width: max-content !important;
+    }
+  }
+  .crumb-head {
+    padding-left: 19px !important;
+    padding-right: 19px !important;
+  }
+
+  //CSS
+
+}
+
+@media (min-width: 673px) and (max-width: 767px) {
+  .video-column {
+    .box {
+      // top: 284px !important;
+    }
+  }
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  //CSS
+
+}

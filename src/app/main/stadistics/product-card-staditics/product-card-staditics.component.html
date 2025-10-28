@@ -1,0 +1,23 @@
+<div class="mb-3 card">
+  <div class="row no-gutters">
+    <div class="w-1/2 h-full col-4">
+      <img style="object-fit: contain; width:70%; height:100%;" class="pl-2" src="{{productStadistic.urlImg}}" alt="">
+    </div>
+    <div class="col-8">
+      <div class="card-body">
+        <h5 class="card-title">{{productStadistic.name}}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body row">
+          <div class="col-12">
+            <p class="card-text" *ngFor="let info of productStadistic.productInformation" >{{info.label}} {{info.text}} {{(info.symbol)?info.symbol:""}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

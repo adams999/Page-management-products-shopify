@@ -1,0 +1,35 @@
+
+<div class="row m-0" *ngIf="responseManager.success.successMessage">
+  <div class="col-md-12 p-0 responses-style-component">
+    <p>
+      <ngb-alert type="success" (close)="close()">
+        <strong>{{responseManager.success.successMessage}}</strong> 
+      </ngb-alert>
+    </p>
+  </div>
+</div>
+<div class="row m-0"  *ngIf="responseManager.error.errorMessage">
+  <div class="col-md-12 responses-style-component p-0">
+    <p>
+      <ngb-alert type="danger" (close)="close()">
+        <strong>{{responseManager.error.errorMessage}}</strong>
+      </ngb-alert>
+    </p>
+  </div>
+</div>
+<div class="row m-0"  *ngIf="responseManager.warning.warningMessage">
+  <div class="col-md-12 responses-style-component p-0">
+    <p>
+      <ngb-alert type="light" class="light" [dismissible]="false">
+        <strong><h4>{{responseManager.warning.warningMessage}}</h4></strong>
+        <div class="col-md-8 p-0 warning">
+          <p>{{responseManager.warning.warningNote}}</p>
+          <button type="button" class="btn btn-primary mt-3" [hidden]="!responseManager.warning.actionButton" (click)="actionButton()">{{responseManager.warning.actionButton}}</button>
+        </div>
+        <div class="p-0 mt-2 message">
+          {{message}}
+        </div>
+      </ngb-alert>
+    </p>
+  </div>
+</div>

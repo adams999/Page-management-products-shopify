@@ -1,0 +1,122 @@
+<div class="col-md-12 mb-3">
+  <div class="card mt-1 h-100" *ngIf="streamDetails.leadsForm">
+    <button type="button" class="delete-product" (click)="removeForm()">
+      <img src="assets/icons-simustream/cross.svg" alt="" />
+    </button>
+    <div class="row no-gutters">
+      <div class="col-4 leads-form text-center">
+        <h5>Leads Generation Form</h5>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <div class="mb-1">
+            <span class="text">{{ streamDetails.leadsForm.name }}</span>
+          </div>
+          <div class="mt-3">
+            <form
+              class="form timers"
+              *ngFor="
+                let showVideo of streamDetails.leadsForm.showVideoMulti;
+                let iVideo = index
+              "
+            >
+              <div class="form-group inline-elements mr-1 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend"></div>
+                  <input
+                    type="text"
+                    [(ngModel)]="streamDetails.leadsForm.timeInValue1"
+                    name="timeInValue1"
+                    (focusout)="
+                      advanceErrorHandling($event, i, streamDetails.leadsForm)
+                    "
+                    id="{{i}}"
+                    [ngClass]="
+                      streamDetails.leadsForm.timeInError
+                        ? 'error-handling form-control form-control-sm input-left'
+                        : 'form-control time form-control-sm input-left'
+                    "
+                    autocomplete="off"
+                    maxlength="2"
+                  />
+                  <span
+                    [ngClass]="
+                      streamDetails.leadsForm.timeInError
+                        ? 'error-handling input-group-text colon-danger'
+                        : 'input-group-text colon'
+                    "
+                    id="{{i}}"
+                    >:</span
+                  >
+                  <input
+                    type="text"
+                    [(ngModel)]="streamDetails.leadsForm.timeInValue2"
+                    name="timeInValue2"
+                    (focusout)="
+                      advanceErrorHandling($event, i, streamDetails.leadsForm)
+                    "
+                    id="{{i}}"
+                    [ngClass]="
+                      streamDetails.leadsForm.timeInError
+                        ? 'error-handling form-control form-control-sm input-right'
+                        : 'form-control time form-control-sm input-right'
+                    "
+                    autocomplete="off"
+                    maxlength="2"
+                  />
+                </div>
+              </div>
+              <span class="dash">-</span>
+              <div class="form-group inline-elements ml-1 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend"></div>
+                  <input
+                    type="text"
+                    [(ngModel)]="streamDetails.leadsForm.timeOutValue1"
+                    name="timeOutValue1 "
+                    (focusout)="
+                      advanceErrorHandling($event, i, streamDetails.leadsForm)
+                    "
+                    id="{{i}}"
+                    [ngClass]="
+                      streamDetails.leadsForm.timeOutError
+                        ? 'error-handling form-control form-control-sm input-left'
+                        : 'form-control time form-control-sm input-left'
+                    "
+                    autocomplete="off"
+                    maxlength="2"
+                  />
+                  <span
+                    [ngClass]="
+                      streamDetails.leadsForm.timeOutError
+                        ? 'error-handling input-group-text colon-danger'
+                        : 'input-group-text colon'
+                    "
+                    id="{{i}}"
+                    >:</span
+                  >
+                  <input
+                    type="text"
+                    [(ngModel)]="streamDetails.leadsForm.timeOutValue2"
+                    name="timeOutValue2"
+                    (focusout)="
+                      advanceErrorHandling($event, i, streamDetails.leadsForm)
+                    "
+                    id="{{i}}"
+                    [ngClass]="
+                      streamDetails.leadsForm.timeOutError
+                        ? 'error-handling form-control form-control-sm input-right'
+                        : 'form-control time  form-control-sm input-right'
+                    "
+                    autocomplete="off"
+                    maxlength="2"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

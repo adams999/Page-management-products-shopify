@@ -1,0 +1,141 @@
+<div class="field-section">
+  <div class="description-text">Select Standard Fields</div>
+  <div class="row mt-3 mr-2" id="grid">
+    <div class="col-md-3 card-count" *ngFor="let field of defaultInputFields; let i=index">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <input type="text" class="form-control mt-1" [(ngModel)]="field.label" id="label_{{i}}" name="{{i}}"
+              placeholder="label" readonly>
+          </div>
+          <h6 class="card-subtitle mb-2 text-muted">Field# {{i+1}}</h6>
+          <div class="custom-control custom-checkbox mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="required_{{i}}" name="{{field.name}}"
+              [(ngModel)]='field.validation.isRequired'>
+            <label class="custom-control-label" for="required_{{i}}">Required</label>
+          </div>
+          <div class="">
+            <button class="btn btn-sign-in view-button bottom-card-button" (click)="addToLeadsForm(field, i+1)">
+              {{field.isSelected?'Remove':'Add'}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="field-section">
+  <div class="description-text ">Create Custom Fields</div>
+  <div class="row mt-3 mr-2" id="grid">
+    <div class="col-md-3 card-count" *ngFor="let field of customInputFields; let i=index">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <input type="text" class="form-control mt-1" [ngClass]="field.isInvalid ? 'error-handling' : ''"
+              [(ngModel)]="field.label" id="label_{{i+ (defaultInputFields.length + 1)}}" name="{{i}}"
+              placeholder="label" #customField (keyup)="checkError(customField.value, field)">
+          </div>
+          <h6 class="card-subtitle mb-2 text-muted">Field# {{i + (defaultInputFields.length + 1)}}</h6>
+          <div class="custom-control custom-checkbox mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="required_{{i+ (defaultInputFields.length + 1)}}"
+              name="{{field.name}}" [(ngModel)]='field.validation.isRequired'>
+            <label class="custom-control-label" for="required_{{i+ (defaultInputFields.length + 1)}}">Required</label>
+          </div>
+          <div class="">
+            <button class="btn btn-sign-in view-button bottom-card-button"
+              (click)="addToLeadsForm(field, i + (defaultInputFields.length + 1))">
+              {{field.isSelected?'Remove':'Add'}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 card-count">
+      <div class="card" (click)="addField()">
+        <div class="card-body text-center">
+          <i class="fas fa-plus add-field"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="description-text ">Fill in Form details</div>
+  <div class="row m-0">
+    <div class="col-md-6 pl-0">
+      <div class="form-group">
+        <label for="">Form Name</label>
+        <input type="text" class="form-control mt-1" [ngClass]="invalidFields.invalidFormName ? 'error-handling form-control' : ''" [(ngModel)]="formDetails.name" id="formName" name="formName"
+          placeholder="Name" (focusout)="checkRequiredValidation(formDetails.name, 'invalidFormName', 'formNameMissing')">
+      </div>
+    </div>
+    <div class="col-md-6 pr-0">
+      <div class="form-group">
+        <label for="">Form Display Name</label>
+        <input type="text" class="form-control mt-1" [ngClass]="invalidFields.invalidDisplayFormName ? 'error-handling form-control' : ''" [(ngModel)]="formDetails.displayName" id="formDisplayName" name="formDisplayName"
+          placeholder="Display Name" (focusout)="checkRequiredValidation(formDetails.displayName, 'invalidDisplayFormName', 'formDisplayNameMissing')">
+      </div>
+    </div>
+
+    <div class="col-md-6 pl-0">
+      <div class="form-group">
+        <label for="">Description</label>
+        <textarea class="form-control mt-1" id="description" rows="3" [(ngModel)]="formDetails.description"
+          name="description" placeholder="Start typing..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="description-text" >Thank You Page Details</div>
+  <div class="row m-0" *ngIf="formDetails && formDetails.formSubmissionDetails">
+    <div class="col-md-6 pl-0">
+      <div class="form-group">
+        <label for="">Title</label>
+        <input type="text" class="form-control mt-1" [ngClass]="invalidFields.invalidModalTitle ? 'error-handling form-control' : ''" [(ngModel)]="formDetails.formSubmissionModal.title" id="formName" name="formName"
+          placeholder="Name" (focusout)="checkRequiredValidation(formDetails.formSubmissionModal.title, 'invalidModalTitle', 'formSubmissionModalTitleInvalid')">
+      </div>
+    </div>
+
+
+    <div class="col-md-6 pl-0">
+      <div class="form-group">
+        <label for="">Description</label>
+        <textarea class="form-control mt-1" id="description" rows="3" [(ngModel)]="formDetails.formSubmissionModal.description"
+          name="description" placeholder="Start typing..." (focusout)="checkRequiredValidation(formDetails.formSubmissionModal.description, 'invalidModalDescription', 'formSubmissionModalDescriptionInvalid')"></textarea>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="description-text ">Choose Form submission method</div>
+  <div class="row m-0">
+  <div class="col-4" *ngFor='let method of submissionMethods; let i=index,'>
+    <div class="custom-control custom-radio custom-control-inline">
+      <input type="radio" id="customRadioInline_{{method.id}}" name="customRadioInline1" class="custom-control-input" value="{{method.id}}" [checked]="method.id === selectedSubmissionMethod" (change)="getSubmissionMethod($event)">
+      <label class="custom-control-label" for="customRadioInline_{{method.id}}" >{{method.label}}</label>
+    </div>
+  </div>
+  </div>
+  <div class="row m-0">
+    <div class="col-md-6 pl-0" *ngIf="selectedSubmissionMethod === 'email' || selectedSubmissionMethod === 'both'">
+      <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" class="form-control mt-1"
+          [ngClass]="invalidFields.invalidEmail && formDetails.formSubmissionDetails.email ? 'error-handling form-control' : ''"
+          [(ngModel)]="formDetails.formSubmissionDetails.email" id="email" name="email" placeholder="abc@gmail.com"
+          #submissionEmail
+          (focusout)="checkPatternValidation(submissionEmail, expressionEmail, 'invalidEmail', 'formSubmissionDetailsEmailInvalid')">
+      </div>
+    </div>
+
+    <div class="col-md-6 pl-0" *ngIf="selectedSubmissionMethod === 'endpoint' || selectedSubmissionMethod === 'both'" [ngClass]="selectedSubmissionMethod === 'endpoint' || selectedSubmissionMethod === 'both'? 'pr-0':''">
+      <div class="form-group">
+        <label for="">End Point</label>
+        <input type="text" class="form-control mt-1"
+          [ngClass]="invalidFields.invalidUrl && formDetails.formSubmissionDetails.endPoint? 'error-handling form-control' : ''"
+          [(ngModel)]="formDetails.formSubmissionDetails.endPoint" id="endPoint" name="endPoint"
+          placeholder="https://www.xyz.com"
+          #submissionEndpoint
+          (focusout)="checkPatternValidation(submissionEndpoint, expressionUrl, 'invalidUrl', 'formSubmissionDetailsEndPointInvalid')">
+      </div>
+    </div>
+  </div>
+</div>

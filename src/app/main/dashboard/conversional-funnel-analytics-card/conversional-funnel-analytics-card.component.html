@@ -1,0 +1,15 @@
+<div class="col-md-12 card-height">
+  <div class="analytics-card h-100 card-border">
+    <div class="row p-3">
+      <div class="col-md-5 col-xs-6 pt-3">
+        <img style="width: 220px;" src="/assets/icons-simustream/Funnel.svg" alt="">
+      </div>
+      <div class="col-md-7 col-xs-6 funnel-analytics">
+        <div *ngFor="let convensionalFunnel of convensionalFunnelAnalytics let i=index" [ngClass]="{'pt-d': !i==0}">
+          <h4>{{convensionalFunnel.text}} <span class="grey-text pl-2">
+              {{convensionalFunnel.value}}%</span></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

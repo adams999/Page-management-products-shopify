@@ -1,0 +1,237 @@
+<div class="container-fluid container-body pb-0">
+  <div *ngIf="streamDetails && streamDetails._id" class="edit-header">
+    <h5>{{header}}</h5>
+  </div>
+  <div class="col-12 p-0">
+    <div *ngIf="streamDetails && !streamDetails._id" class="row content-center">
+      <div class="col-md-12 text-center">
+        <create-stream-header-app></create-stream-header-app>
+      </div>
+      <div class="col-md-10 crumb-head col-sm-12">
+        <stream-bread-crumb-app
+          [crumbNumber]="breadCrumbNumber"
+        ></stream-bread-crumb-app>
+      </div>
+    </div>
+    <div
+      *ngIf="storeConnected && signIn"
+      class="col-md-12 bg p-0 pl-3 border-style shadow-box"
+    >
+      <div class="row description-text pt-4 pb-0">
+        <div
+          class="col pl-2 head-text"
+          *ngIf="products.length > 0 || notSearchResult"
+        >
+          Choose products from your Shopify account
+          <button
+            *ngIf="splitIoService.isTreatmentOn('show-info-not-products')"
+            class="btn btn-outline-primary btn-sm mb-2 mr-2"
+            (click)="openModalInfo(content)"
+          >
+            ?
+          </button>
+        </div>
+        <div class="col">
+          <form>
+            <div class="form-row search-form-row">
+              <div class="form-group mb-0 search-form mt-1">
+                <div class="form-group mb-0 has-feedback" [hidden]="loader">
+                  <label for="search" class="sr-only"></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="search"
+                    id="search"
+                    (keyup)="search($event)"
+                    (blur)="filterKeys.search=''"
+                    placeholder=""
+                  />
+                  <span class="form-control-feedback">
+                    <img
+                      src="/assets/icons-simustream/search.svg"
+                      alt=""
+                      [hidden]="loader"
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div
+        [ngClass]="products.length > 0 ? 'height-ch' : 'height-ch store-logo'"
+        (scroll)="onElementScroll($event)"
+        id="client"
+      >
+        <div
+          *ngIf="products.length < 1 && !notSearchResult && !loader && signIn"
+          class="col-md-12"
+        >
+          <h4>Connected Successfully.</h4>
+          <p>
+            Please publish your products from shopify app and refresh this page.
+          </p>
+        </div>
+        <div
+          *ngIf="SearchResultMessage !='' && notSearchResult"
+          class="col-md-12"
+        >
+          <p>{{SearchResultMessage}}</p>
+        </div>
+        <div *ngIf="loader" class="loader-center h-100">
+          <loader-spinner></loader-spinner>
+        </div>
+        <div *ngIf="!loader" class="row mt-3 ml-2 mr-2" id="grid">
+          <div
+            class="col-md-4 card-count pl-0 mb-3"
+            *ngFor="let item of products; let i=index"
+          >
+            <div
+              class="card default-card"
+              (click)="addProduct(item)"
+              [ngClass]="item.isSelected?'card-selected':''"
+            >
+              <div class="row no-gutters h-100">
+                <div class="col-4 h-100">
+                  <img
+                    src="{{item?.images[0]?.src || item?.imageUrl}}"
+                    class="card-img"
+                    alt="..."
+                  />
+                </div>
+                <div class="col-8">
+                  <div class="card-body stream-products">
+                    <div class="mb-1 ellipsis">
+                      <span class="text">{{item.title}}</span>
+                    </div>
+                    <div class="mb-1">
+                      <small class="text-muted"> Brand:</small>
+                      <small class="text-muted"> {{item.vendor}}</small>
+                    </div>
+                    <div class="mb-1">
+                      <small class="text-muted"> Price:</small>
+                      <small class="text-muted">
+                        ${{item.variants[0].price}}</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="!storeConnected && !signIn"
+      class="col-md-12 p-4 bg mt-4 border-style store-logo shadow-box"
+    >
+      <div class="">
+        <img src="/assets/store-logos/shopifyLogo.png" alt="" />
+
+        <div class="text-sign-in mt-4 mb-4">
+          <p>Sign in to your Shopify account to associate products.</p>
+        </div>
+        <button class="btn btn-sign-in" (click)="signInStroe()">
+          Sign in to Shopify
+        </button>
+      </div>
+    </div>
+    <div
+      *ngIf="signIn && !storeConnected"
+      class="col-md-12 p-4 bg mt-4 border-style store-logo shadow-box"
+    >
+      <div *ngIf="loader" class="loader-center">
+        <loader-spinner></loader-spinner>
+      </div>
+      <div class="col-md-4" *ngIf="!connect">
+        <img src="/assets/store-logos/shopifyLogo.png" alt="" />
+
+        <div class="form-group mb-4">
+          <label for=""></label>
+          <input
+            type="text"
+            class="form-control mt-2"
+            [(ngModel)]="storeDetails.storeId"
+            id="storeId"
+            name="storeId"
+            placeholder="store-name.myshopify.com"
+          />
+        </div>
+        <button class="btn btn-sign-in" (click)="connectStore()">
+          Connect Store
+        </button>
+      </div>
+      <div class="col-md-12" *ngIf="connect">
+        <div class="form-group mb-4">
+          <label for=""></label>
+          <p>
+            To Complete the Integration you will have to install SimuStream
+            Sales Channel App on your Shopify Store and approve a recurring
+            Charge. Click the button below to be taken to Shopify Store and
+            approve these actions
+          </p>
+        </div>
+        <button
+          class="btn btn-sign-in"
+          (click)="continue()"
+          [disabled]="disableButton"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+    <div class="col-md-12 mt-3 pl-0 pr-0">
+      <button
+        class="btn btn-primary btn-w-100 content-right"
+        (click)="associateProducts()"
+        [disabled]="!selectedArray.length"
+      >
+        Associate Products
+        <img
+          class="ml-3"
+          src="assets/icons-simustream/Arrow_Right.svg"
+          alt=""
+        />
+      </button>
+      <button
+        class="btn btn-primary btn-w-100 content-right mr-2"
+        (click)="selectLeadForm()"
+      >
+        Choose Lead Form
+      </button>
+      <button
+        class="btn btn-gery-transparent btn-w-100 btn-cancel"
+        (click)="cancelStream()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title title-modal" id="modal-basic-title">
+        No Products?
+      </h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group body-modal">
+          In case your products are not listed, you must go to your shopify
+          account and add the products to your sales channel
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>

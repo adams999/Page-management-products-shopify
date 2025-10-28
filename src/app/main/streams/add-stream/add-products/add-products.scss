@@ -1,0 +1,138 @@
+.container {
+  padding-right: 32px;
+  padding-left: 50px;
+}
+.content-right {
+  float: right;
+}
+
+.breadcrumb {
+  list-style: none;
+  overflow: hidden;
+  padding: 0;
+  justify-content: center !important;
+  background-color: transparent;
+}
+.breadcrumb li {
+  float: left;
+}
+.breadcrumb li a {
+  color: #354168;
+  text-decoration: none;
+  padding: 10px 0 10px 55px;
+  background: brown; /* fallback color */
+  background: white;
+  position: relative;
+  display: block;
+  float: left;
+}
+.breadcrumb li a:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 100%;
+  z-index: 2;
+}
+.breadcrumb li a:before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid #e6e7ef;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 1;
+}
+.breadcrumb li:first-child a {
+  padding-left: 10px;
+}
+
+.card {
+  cursor: pointer;
+  height: 122px;
+  img {
+    height: 100% !important;
+    object-fit: cover;
+  }
+}
+.store-logo {
+  position: relative;
+  vertical-align: middle;
+  height: calc(100vh - 335px);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  img {
+    width: 180px !important;
+    height: 60px;
+  }
+  .text-sign-in {
+    font-size: 12px;
+    color: #798192;
+    font-weight: 600;
+  }
+}
+
+.height-ch {
+  height: calc(100vh - 316px);
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: #ffffff;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(223, 224, 230, 0.473);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(226, 224, 224);
+}
+.description-text {
+  padding: 13px;
+}
+
+.search-form .form-group span.form-control-feedback {
+  top: 3px !important;
+  right: 29px !important;
+}
+.search-form-row {
+  float: right;
+  .search-form {
+    margin-right: 17px;
+  }
+}
+.ellipsis {
+  width: 100% !important;
+}
+
+.title-modal {
+  color: #5579f3 !important;
+}
+
+.body-modal {
+  color: #354168 !important;
+}

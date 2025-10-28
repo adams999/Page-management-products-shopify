@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="650px" height="424px" viewBox="0 0 650 424" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Group 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="570" height="344" rx="4"></rect>
+        <filter x="-11.4%" y="-16.0%" width="122.8%" height="137.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="20" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.959981703   0 0 0 0 0.965610014   0 0 0 0 0.985309103  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Homepage-+-responsive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="home" transform="translate(-60.000000, -2175.000000)">
+            <g id="Group-6" transform="translate(100.000000, 2205.000000)">
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <text id="Total-Revenue" font-family="SofiaProMedium, Sofia Pro" font-size="22" font-weight="400" fill="#354168">
+                    <tspan x="30" y="42">Total Revenue</tspan>
+                </text>
+                <path d="M0,68.5 L570,68.5" id="Line-3" stroke="#E6E7EF" stroke-linecap="square"></path>
+                <path d="M40,278.5 L544,278.5" id="Line-3" stroke="#E6E7EF" stroke-linecap="square"></path>
+                <path d="M40,228.5 L544,228.5" id="Line-3" stroke="#E6E7EF" stroke-linecap="square"></path>
+                <path d="M40,178.5 L544,178.5" id="Line-3" stroke="#E6E7EF" stroke-linecap="square"></path>
+                <path d="M40,128.5 L544,128.5" id="Line-3" stroke="#E6E7EF" stroke-linecap="square"></path>
+                <polygon id="Path-5" fill="#00E098" opacity="0.100000001" points="49 240 131 222 223 202 313 177 413 172 523 142 523 279 49 279"></polygon>
+                <polyline id="Path-5" stroke="#00E098" stroke-width="2" points="49 240 131 222 223 202 313 177 413 172 523 142"></polyline>
+                <text id="Jan" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="41.352" y="309">Jan</tspan>
+                </text>
+                <text id="Feb" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="119.448" y="309">Feb</tspan>
+                </text>
+                <text id="Mar" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="207.472" y="309">Mar</tspan>
+                </text>
+                <text id="Apr" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="299.308" y="309">Apr</tspan>
+                </text>
+                <text id="May" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="396.06" y="309">May</tspan>
+                </text>
+                <text id="Jun" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="511.252" y="309">Jun</tspan>
+                </text>
+                <circle id="Oval" stroke="#FFFFFF" stroke-width="4" fill="#00E098" cx="48.5" cy="239.5" r="7.5"></circle>
+                <circle id="Oval" stroke="#FFFFFF" stroke-width="4" fill="#00E098" cx="130.5" cy="221.5" r="7.5"></circle>
+                <circle id="Oval" stroke="#FFFFFF" stroke-width="4" fill="#00E098" cx="222.5" cy="201.5" r="7.5"></circle>
+                <circle id="Oval" stroke="#FFFFFF" stroke-width="4" fill="#00E098" cx="312.5" cy="176.5" r="7.5"></circle>
+                <circle id="Oval" stroke="#FFFFFF" stroke-width="4" fill="#00E098" cx="412.5" cy="171.5" r="7.5"></circle>
+                <circle id="Oval" stroke="#FFFFFF" stroke-width="4" fill="#00E098" cx="522.5" cy="141.5" r="7.5"></circle>
+                <text id="0" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="11" y="247">0</tspan>
+                </text>
+                <text id="10k" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="11" y="197">10k</tspan>
+                </text>
+                <text id="20k" font-family="SofiaProRegular, Sofia Pro" font-size="16" font-weight="normal" line-spacing="24" fill="#B7C0C9">
+                    <tspan x="11" y="147">20k</tspan>
+                </text>
+                <g id="Group-14" transform="translate(253.000000, 107.000000)">
+                    <path d="M68,50 L61.8,54.65 C60.7333333,55.45 59.2666667,55.45 58.2,54.65 L52,50 L6,50 C2.6862915,50 4.05812251e-16,47.3137085 0,44 L0,6 C-4.05812251e-16,2.6862915 2.6862915,6.08718376e-16 6,0 L113,0 C116.313708,-6.08718376e-16 119,2.6862915 119,6 L119,44 C119,47.3137085 116.313708,50 113,50 L68,50 Z" id="Combined-Shape" fill="#354168"></path>
+                    <text id="$16,880" font-family="SofiaProMedium, Sofia Pro" font-size="16" font-weight="400" line-spacing="20" fill="#FFFFFF">
+                        <tspan x="35" y="30">$16,880</tspan>
+                    </text>
+                    <circle id="Oval" fill="#FFFFFF" cx="22.5" cy="22.5" r="2.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

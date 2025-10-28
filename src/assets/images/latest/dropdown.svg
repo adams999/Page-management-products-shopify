@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="8px" viewBox="0 0 15 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Homepage-+-responsive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="contact" transform="translate(-625.000000, -726.000000)" fill="#354168">
+            <g id="Group-18" transform="translate(138.000000, 666.000000)">
+                <g id="Group-12" transform="translate(0.000000, 37.000000)">
+                    <path d="M494.21942,23.0007469 C493.971851,23.0065358 493.735233,23.1039685 493.55537,23.2741844 L487.305371,29.2742019 C486.908254,29.6585851 486.896988,30.2918077 487.280181,30.6900734 C487.663373,31.0883391 488.296559,31.1015005 488.695971,30.7195019 L494.25067,25.3835669 L499.805372,30.7195019 C500.204783,31.1015005 500.837969,31.0883391 501.221161,30.6900734 C501.604354,30.2918077 501.593088,29.6585851 501.195972,29.2742019 L494.94597,23.2741844 C494.750484,23.0889282 494.488542,22.9903462 494.21942,23.0007469 Z" id="Path" transform="translate(494.250671, 26.998802) rotate(180.000000) translate(-494.250671, -26.998802) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

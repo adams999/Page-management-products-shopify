@@ -1,0 +1,210 @@
+*{
+  box-sizing: border-box;
+}
+h1{
+  color: white !important
+}
+
+.teamimageclass{
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width:767px){
+  .teamimageclass{
+   display: none;
+  }
+}
+.team-upper-image {
+  // background-image: url("/images/bg.jpg");
+  position: relative;
+  background-color: #5579F3;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+  display: grid !important;
+  text-align: center;
+  }
+  
+  .row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  }
+  .team-main-heading {
+  margin: 80px;
+  color: white;
+  }
+
+  .teambuttonplus{
+
+  }
+.team-move-up{
+  transform: translateY(-65px);
+  // background: white !important;
+}
+.teamtextcolor{
+  color: #798192
+}
+.teamtextcolorh{
+  color: #021c6d
+}
+.teamunselectable {
+  opacity: 0.8;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.teamcardpadding{
+  padding: 12px 40px 12px
+}
+
+
+.team-person-image{
+  margin-top: 95px;
+  margin-bottom: 70px;
+}
+@media screen and (max-width:992px){
+  .team-person-image{
+    margin-top: 75px;
+    margin-bottom: 60px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .team-person-image{
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .team-main-heading {
+      margin: 20px;
+      margin-top: 70px;
+      color: white;
+      }
+}
+.sociallinksteampage{
+  height: 18px;
+  width: 18px;
+  margin-left: 10px;
+  vertical-align: baseline;
+}
+.teampagesubheading{
+  font-size: 16px !important;
+    font-weight: bold !important;
+    font-family: sofia-pro-light !important;
+}
+.teampageheadersubheading{
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  padding-top: 20px;
+  font-family: sofia-pro-light !important; 
+  width: 60%;
+}
+@media screen and (max-width: 768px) {
+  .teampageheadersubheading{
+    font-size: 20px !important;
+    padding-top: 10px;
+    font-weight: 500 !important;
+    font-family: sofia-pro-light !important;
+    width: 90%;
+  }
+}
+.teambuttonx{
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  font-size: 22px !important;
+    font-weight: 300 !important;
+    font-family: sofia-pro-light !important;
+    color: azure !important;
+}
+.pricingsideimg1{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+}
+.pricingsideimg2{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+}
+.pricingsideimg3{
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+ .pricingsideimg2{
+  display: none;
+ }
+ .pricingsideimg1{
+  display: none
+ }
+ .pricingsideimg3{
+   display: block;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   width: 235px;
+ }
+}
+
+
+@media screen and (max-width: 575px) {
+  .teamcardpadding{
+      padding: 12px 40px 12px
+  }
+  .container{
+      padding-left: 12.5%;
+      padding-right: 12.5%;
+  }
+  .team-upper-image {
+    // background-image: url("/images/bg.jpg");
+    background-color: #5579F3;
+  
+    background-repeat: no-repeat;
+    background-size: cover;
+    // height: 350px;
+    width: 100%;
+    display: grid !important;
+    text-align: center;
+    }
+}
+
+@media screen and (max-width: 425px) {
+  .container{
+      padding-left: 7.5%;
+      padding-right: 7.5%;
+  }
+}
+.bg-color-transparent{
+  background-color: white !important;
+}
+.team-image-mobile{
+  display: none;
+}
+@media screen and (max-width:767px){
+  .team-image-desktop{
+    display: none;
+  }
+  .team-image-mobile{
+    display: flex;
+  }
+  .sociallinksteampage[_ngcontent-c2] {
+    height: 40px;
+    width: 40px;
+    margin: 0px 12px;
+    vertical-align: baseline;
+  }
+}
+.text-light-black{
+  color: #414042 !important;
+}
+@media screen and (min-width:768px){
+  .social-light-color{
+    color: #C6CDD3 !important;
+  }
+}

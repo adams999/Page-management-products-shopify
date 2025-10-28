@@ -1,0 +1,86 @@
+<main-header></main-header>
+<div style="background-color: white">
+    <div class="row team-upper-image">
+        <div class="team-main-heading">
+            <h1>Our Team</h1>
+            <p class="text-light m-auto teampageheadersubheading">Meet the team of thinkers and doers obsessed about
+                challenging norms and creating innovative solutions.</p>
+        </div>
+        <img src="/assets/images/latest/faqs element 1.svg" class="pricingsideimg1">
+        <img src="/assets/images/latest/faqs element 2.svg" class="pricingsideimg2">
+        <img src="/assets/images/latest/contact element.svg" class="pricingsideimg3">
+    </div>
+
+
+    <div class="container p-0 team-move-up">
+        <div class="row" id="teamholder">
+            <ng-container *ngFor="let member of members; let i = index">
+                <app-teamcard (databack)="receiveMessage($event)" [index]=i [image]=member.image [imageExpand]=member.imageExpand [name]=member.name
+                    [post]=member.post [description]=member.description [facebook]=member.facebooklink
+                    [twitter]=member.twitter [linkedin]=member.linkedin [triggerindex]=id [close]="closed"
+                    class="col-lg-4 col-sm-6 mb-3">
+                </app-teamcard>
+                <div class="row p-0 team-person-image team-image-desktop w-100" *ngIf="checkflag(i) && !closeflag">
+                    <div class="col-sm-4 mt-sm-0 mt-3">
+                        <img src={{this.obj.imageExpand}} class="teamimageclass">
+                    </div>
+                    <div class="col-sm-7 mt-sm-0 mt-4 pr-sm-0 ">
+                        <h3 class="teamtextcolorh d-inline">{{this.obj.name}}</h3>
+                        <div class="d-inline ml-4">
+                            <a [hidden]="!this.obj.twitter" href={{this.obj.twitter}} target="_blank"><img
+                                    src="/assets/images/twitter-logo.svg"
+                                    class="sociallinksteampage social-light-color"></a>
+                            <a [hidden]="!this.obj.facebook" href={{this.obj.facebook}} target="_blank"><img
+                                    src="/assets/images/facebook.svg"
+                                    class="sociallinksteampage social-light-color"></a>
+                            <a [hidden]="!this.obj.linkedin" href={{this.obj.linkedin}} target="_blank"><img
+                                    src="/assets/images/linkedin-logo.svg"
+                                    class="sociallinksteampage social-light-color"></a>
+                        </div>
+                        <h4 class="text-secondary font-weight-light teampagesubheading mt-3">{{this.obj.post}}</h4>
+                        <br />
+                        <p class="teampagesubheading">{{this.obj.description}}</p>
+                    </div>
+                    <div class="col-sm-1 mt-sm-0 pl-sm-0 text-right mb-3">
+                        <div class="text-right">
+                            <span class="">
+                                <button class="btn btn-primary btn-xs  rounded-0 teambuttonx" (click)=close()><i
+                                        class="icon ion-md-close"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-0 team-person-image team-image-mobile" *ngIf="checkflag(i) && !closeflag">
+                    <div class="col-sm-4 mt-sm-0 mt-3">
+                        <img src={{this.obj.imageExpand}} class="teamimageclass">
+                    </div>
+                    <div class="col-sm-7 mt-sm-0 mt-4 pr-sm-0 ">
+                        <h2 class="teamtextcolorh text-center">{{this.obj.name}}</h2>
+                        <h3 class="text-secondary font-weight-light teampagesubheading mt-1 text-center">
+                            {{this.obj.post}}</h3>
+                        <div class="mt-3 text-center">
+                            <a [hidden]="!this.obj.twitter" href={{this.obj.twitter}} target="_blank"><img
+                                    src="/assets/images/twitter-logo.svg" class="sociallinksteampage"></a>
+                            <a [hidden]="!this.obj.facebook" href={{this.obj.facebook}} target="_blank"><img
+                                    src="/assets/images/facebook.svg" class="sociallinksteampage"></a>
+                            <a [hidden]="!this.obj.linkedin" href={{this.obj.linkedin}} target="_blank"><img
+                                    src="/assets/images/linkedin-logo.svg" class="sociallinksteampage"></a>
+                        </div>
+                        <br />
+                        <p class="teampagesubheading">{{this.obj.description}}</p>
+                    </div>
+                    <div class="col-sm-1 mt-sm-0 pl-sm-0 text-right mb-3">
+                        <div class="text-right">
+                            <span class="">
+                                <button class="btn btn-primary btn-xs  rounded-0 teambuttonx" (click)=close()><i
+                                        class="icon ion-md-close"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>
+<main-footer></main-footer>

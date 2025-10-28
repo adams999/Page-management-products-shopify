@@ -1,0 +1,288 @@
+.container {
+  padding-right: 32px;
+  padding-left: 50px;
+}
+
+.content-right {
+  float: right;
+}
+
+.form-group {
+  label {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  input.form-control.time {
+    padding: 10px;
+    height: 30px !important;
+    width: 80px;
+    background-color: #f8f9fb !important;
+    color: #354168 !important;
+    font-size: 12px;
+    border-color: #e6e7ef !important;
+    text-align: center;
+
+    &:focus {
+      outline: none !important;
+      border-color: #e6e7ef !important;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+}
+
+button.delete-product {
+  background-color: transparent;
+  border-color: transparent;
+  position: absolute;
+  padding: 1px;
+  right: 5px;
+  color: #354168;
+  z-index: 3;
+  img {
+    height: 10px !important;
+  }
+  &:hover {
+  }
+  &:focus {
+    outline: none !important;
+    border-color: none !important;
+    outline: 0;
+    box-shadow: none !important;
+  }
+}
+
+.inline-elements {
+  display: inline-block;
+}
+
+/////////////////////
+// scss sync products
+.video-column-content {
+  position: relative !important;
+}
+
+.box {
+  display: block;
+  height: 308px;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .box {
+    // width: calc(100vw - 80%) !important;
+  }
+}
+
+.well-sm {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.well-sm:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.pull-right {
+  text-align: right;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.w-bold {
+  font-weight: 600;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.product-text {
+  p {
+    color: white !important;
+  }
+  color: white !important;
+  font-size: 10px;
+}
+
+.card-data {
+  position: relative;
+  top: 18px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: #ffffff;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(223, 224, 230, 0.473);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(226, 224, 224);
+}
+
+#bottom_fade {
+  z-index: 99;
+  position: fixed;
+  bottom: 0%;
+  //	background-image: url("bottom-fade.png");
+}
+
+.description-text {
+  padding-left: 18px;
+  font-size: 15px;
+}
+
+.form-group {
+  label {
+    font-weight: 100 !important;
+    font-size: 16px !important;
+  }
+}
+
+.light-blue-backdrop {
+  background-color: #354168;
+}
+
+.slider {
+  padding-top: 36px;
+  padding-bottom: 28px;
+
+  img {
+    position: absolute;
+    left: 207px;
+  }
+
+  img.s-node {
+    top: 245px;
+    z-index: 2;
+  }
+
+  img.s-slider {
+    z-index: 1;
+  }
+}
+.form-group {
+  img {
+    position: absolute;
+    top: 7px;
+    z-index: 1;
+    padding-left: 12px !important;
+  }
+  input.form-control {
+    height: 41px !important;
+    font-size: 13px !important;
+  }
+  input.link-input {
+    padding-left: 50px !important;
+  }
+}
+.border-style {
+  button.add-item {
+    background-color: transparent;
+    border: none;
+    right: 10px;
+    position: absolute;
+    bottom: 13px;
+    z-index: 5;
+    &:hover {
+      // color: $text-gray !important;
+    }
+    &:focus {
+      outline: none !important;
+      border-color: none !important;
+      outline: 0;
+      box-shadow: none !important;
+    }
+    img {
+      height: 30px;
+      width: 30px;
+    }
+  }
+}
+.form-group {
+  input.form-control.error-handling {
+    padding: 10px;
+    height: 30px !important;
+    width: 80px;
+    background-color: #f8f9fb !important;
+    color: #354168 !important;
+    font-size: 12px;
+    border-color: #ff5342 !important;
+    text-align: center;
+
+    &:focus {
+      outline: none !important;
+      border-color: #ff5342 !important;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.form-sample-display {
+  margin-bottom: 0 !important;
+  input.form-control {
+    height: 34px !important;
+    font-size: 11px !important;
+  }
+  label {
+    font-size: 11px !important;
+    color: white !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+.form-data {
+  width: 210px;
+  padding-left: 10px;
+  padding-right: 10px;
+  .form-name {
+    color: white;
+    font-size: 12px;
+  }
+  .button-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    button {
+      font-size: 11px !important;
+      padding: 6px !important;
+    }
+  }
+}
+
+.hide-form-container {
+  button {
+    padding: 5px !important;
+    font-size: 12px !important;
+    float: right !important;
+  }
+  p {
+    color: white !important;
+    position: relative;
+    top: 4px;
+  }
+  .well {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}

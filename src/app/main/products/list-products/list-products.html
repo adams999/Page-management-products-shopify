@@ -1,0 +1,184 @@
+<div class="container-fluid pb-0">
+  <app-dashboard-header [header]=header></app-dashboard-header>
+
+  <div class="list-streams-main row mt-4">
+    <div class="col-md-12">
+      <div class=" bg pt-3 pl-3 p-0 border-style shadow-box">
+        <div class="row m-0  pb-3" [ngClass]="displayStyle == 'grid'? 'grid-table': 'list-table'">
+          <div class="col-md-2 col-12 col-sm-12 pl-0 stream-q count-item">
+            <h6>{{products.length}} {{products.length > 1? 'Products': 'Product'}}</h6>
+          </div>
+          <div class="col-md-10 active-list-filters col-12 col-sm-12 p-0 text-right">
+            <form>
+              <div class="form-row float-right">
+                <div class="form-group search-form filter-margin-right mt-1">
+                  <div class="form-group mb-0 has-feedback">
+                    <label for="search" class="sr-only"></label>
+                    <input type="text" class="form-control" name="search" id="search" (keyup)="search($event)"
+                      (blur)="filterKeys.search=''" placeholder="">
+                    <span class=" form-control-feedback">
+                      <img src="/assets/icons-simustream/search.svg" alt="">
+                    </span>
+                  </div>
+                </div>
+                <!-- <div class="form-group mr-3 mb-0">
+                
+                  </div> -->
+                <div class="form-group filter-form mb-0">
+                  <button class="btn btn-empty refresh mr-3 mt-1" [disabled]="disableButtons.refreshList"
+                    (click)="refreshList()">
+                    <img class="" src="/assets/icons-simustream/refresh.svg" alt="">
+                  </button>
+                  <span class="dropdown filter mr-3">
+                    <span class="description-text sort">Sort By:</span>
+                    <button class="btn btn-secondary dropdown-toggle sortby" type="button" id="dropdownMenu2"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{currentFilter}}
+                      <img class="mt-2" src="/assets/icons-simustream/Arrow-up-down.svg" alt="">
+                    </button>
+                    <div class="dropdown-menu filter-menu" aria-labelledby="dropdownMenu2">
+                      <button class="dropdown-item" type="button"
+                        (click)="filterFunc('Top Selling Products', 'sales')">Top Selling Products</button>
+                      <button class="dropdown-item" type="button" (click)="filterFunc('Total clicks', 'views')">Total
+                        clicks</button>
+                      <!-- <button class="dropdown-item" type="button" (click)="filterFunc('Price','price')">Price</button> -->
+                    </div>
+
+                  </span>
+                  <!-- <div class="mb-0"> -->
+                  <span class="dropdown filter mr-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img class="mr-2" src="/assets/icons-simustream/filters.svg" alt="">
+                      Filters
+                      <img class="ml-2" src="/assets/icons-simustream/Arrow-up-down.svg" alt="">
+                    </button>
+                    <!-- <span data-toggle="dropdown"></span> -->
+                    <div class="dropdown-menu check text-center" #dropmenu>
+                      <form ngNativeValidate (ngSubmit)="applyFilter(dropmenu)" class=" pr-3 pl-3 pb-2">
+                        <div class="form-group">
+                          <label for="" class="float-left">Price</label>
+                          <div class="dropdown-width">
+                            <input type="number" class="form-control mr-1" name="minPrice" [(ngModel)]="filterKeys.minPrice" placeholder="min" min="0" required/>
+                            <div class="mt-2">-</div>
+                            <input type="number" class="form-control ml-1" name="maxPrice" [(ngModel)]="filterKeys.maxPrice" placeholder="max"  min="0" required/>
+                          </div>
+
+                          <!-- <div class="select-wrapper" >
+                              <select class="form-control" [(ngModel)]="filterKeys.price" name="filterKey"
+                                id="filterKey">
+                                <option selected value="">Any</option>
+                                <option value="1-49">1-49</option>
+                                <option value="50-99">50-99</option>
+                                <option value="100-249">100-249</option>
+                                <option value="250-499">250-499</option>
+                                <option value="500-999">500-999</option>
+                                <option value="999">>999</option>
+                              </select>
+                              <i class="fa fa-chevron-down"></i>
+                            </div> -->
+                        </div>
+                        <button type="submit" class="btn btn-sign-in ">Apply</button>
+                      </form>
+                    </div>
+                  </span>
+                  <!-- </div> -->
+                  <div class="btn-group" role="toolbar" aria-label="Basic example">
+                    <button type="checkbox" class="btn btn-multiple btn-left pt-1" (click)="switchDisplay('list')">
+                      <img *ngIf="displayStyle== 'grid'" src="/assets/icons-simustream/list-view.svg" alt="">
+                      <img *ngIf="displayStyle == 'list'" src="/assets/icons-simustream/list-view-active.svg" alt="">
+                    </button>
+                    <button type="checkbox" (click)="switchDisplay('grid')" class="btn btn-multiple btn-right pt-1">
+                      <img *ngIf="displayStyle== 'list'" src="/assets/icons-simustream/grid-view.svg" alt="">
+                      <img *ngIf="displayStyle == 'grid'" src="/assets/icons-simustream/grid-view-active.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group   mb-0">
+            
+                </div> -->
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+        <div class="height-ch" (scroll)="onElementScroll($event)" id="client">
+          <div *ngIf="loader" class="loader-center h-100">
+            <loader-spinner></loader-spinner>
+          </div>
+          <div *ngIf="errorMessages.account" class="loader-center h-100">{{errorMessages.account}}</div>
+          <table *ngIf="displayStyle == 'list' && !loader" class="table bg" id="grid">
+            <thead>
+              <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of products ; let i = index">
+                <td style="width: 7%" class="img-scene pl-0"><img src="{{item?.images[0]?.src || item?.imageUrl}}"
+                    alt=""></td>
+                <td class="pl-0" style="width: 60%">
+                  <div><span class="text"> {{item.title}}</span></div>
+                  <div>
+                    <span class="description-text font-regular"> Brand:</span>
+                    <span class="description-text font-regular"> {{item.vendor}}</span>
+                  </div>
+                  <div>
+                    <span class="description-text font-regular"> Price:</span>
+                    <span class="description-text font-regular"> ${{item.variants[0].price}}</span>
+                  </div>
+                  <div>
+                    <span class="badge badge-light mt-2">{{item.category}}</span></div>
+                </td>
+                <td><span class="text"> {{item.views ? item.views : 0}} </span><br> <span
+                    class="description-text font-regular">Total views</span>
+                </td>
+                <td><span class="text">${{item.sales ? totalSalesDecimalHandled(item.sales) : 0}}</span><br> <span
+                    class="description-text font-regular">Total sales</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="displayStyle == 'grid' && !loader" class="row ml-2 mt-3 mr-2" id="grid">
+
+            <div class="col-md-4 col-sm-12 col-12 card-count card-height pl-0 mb-3"
+              *ngFor="let item of products; let i=index">
+              <div class="card default-list-products-card h-100" [ngClass]="item.isSelected?'card-selected':''">
+                <div class="row no-gutters h-100">
+                  <div class="col-4 content-v-align h-100">
+                    <img src="{{item?.images[0]?.src || item?.imageUrl}}" class="card-img" alt="">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <div class="mb-1 mt-1 ellipsis">
+                        <span class="text">{{item.title}}</span>
+                      </div>
+                      <div class="ellipsis">
+                        <small class="text-muted"> Brand:</small>
+                        <small class="text-muted"> {{item.vendor}}</small>
+                      </div>
+                      <div>
+                        <small class="text-muted"> Price:</small>
+                        <small class="text-muted"> ${{item.variants[0].price}}</small>
+                      </div>
+                      <div class="row mt-2">
+                        <div class="col pr-0"><span class="text">{{item.views ? item.views : 0}} </span><br>
+                          <div class="description-text font-regular mt-2">Total views</div>
+                        </div>
+                        <div class="col pl-2"><span class="text">${{item.sales ? totalSalesDecimalHandled(item.sales) : 0}} </span><br>
+                          <div class="description-text font-regular mt-2">Total sales</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

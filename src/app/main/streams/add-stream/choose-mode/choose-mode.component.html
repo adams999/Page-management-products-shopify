@@ -1,0 +1,57 @@
+<div class="container-fluid p-5">
+  <div class="row content-center">
+    <div class="col-md-12 text-center">
+      <create-stream-header-app></create-stream-header-app>
+    </div>
+    <div class="col-md-10 crumb-head col-sm-12">
+      <stream-bread-crumb-app [crumbNumber]='breadCrumbNumber'></stream-bread-crumb-app>
+    </div>
+
+    <div class="col-md-12 p-4 bg mt-4 border-style  shadow-box">
+      <div class="row">
+        <!-- <div *ngIf="loader" class="loader-center">
+          <loader-spinner></loader-spinner>
+        </div> -->
+        <div class="col-md-6 store-logo b-r">
+          <div>
+            <!-- <img src="/assets/store-logos/shopifyLogo.png" alt=""> -->
+            <span class="mode-head">
+              <h3>Leads Gen</h3>
+            </span>
+            <div class="form-group mb-4">
+              <label for=""></label>
+            </div>
+            <div class="form-check radio-toolbar">
+              <input class="form-check-input" type="radio" name="leadStream" id="leadStream" value="leadStream"
+                [(ngModel)]="streamMode" checked>
+              <label class="form-check-label" for="leadStream">
+                Create Leads Stream
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 store-logo">
+          <div>
+            <img src="/assets/store-logos/shopifyLogo.png" alt="">
+            <div class="form-group mb-4">
+              <label for=""></label>
+            </div>
+            <div class="form-check radio-toolbar">
+              <input class="form-check-input" type="radio" name="storeStream" id="storeStream" value="storeStream"
+                [(ngModel)]="streamMode">
+              <label class="form-check-label" for="storeStream">
+                Create Shopify Stream
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mt-3 pl-0 pr-0">
+      <button class="btn btn-primary btn-w-100 content-right" (click)="nextFunction()">Next
+        <img class="ml-3" src="assets/icons-simustream/Arrow_Right.svg" alt=""></button>
+      <button class="btn btn-gery-transparent  btn-w-100 btn-cancel" (click)="cancelStream()">Cancel</button>
+    </div>
+  </div>
+</div>

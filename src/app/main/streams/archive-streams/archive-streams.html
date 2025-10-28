@@ -1,0 +1,198 @@
+<div class="container-fluid pb-0">
+  <app-dashboard-header [header]=header></app-dashboard-header>
+
+  <div class="list-streams-main row mt-4">
+    <div class="col-md-12">
+      <div class=" bg pt-3 pl-3 p-0 border-style shadow-box">
+        <div class="row m-0  pb-3" [ngClass]="displayStyle == 'grid'? 'grid-table': 'list-table'">
+          <div class="col-md-4 pl-0 stream-q col-sm-12">
+            <h6>{{streams.length}} {{streams.length > 1 || streams.length == 0? 'Streams': 'Stream'}}</h6>
+
+          </div>
+          <div class="col-md-8 active-list-filters p-0 text-right">
+            <form>
+              <div class="form-row">
+                <div class="form-group  mr-3 form-filter btn-filter">
+                  <div class="dropdown filter">
+                    <button class="btn btn-secondary btn-w-100 dropdown-toggle" type="button" id="dropdownMenu2"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{currentFilter}}
+                      <img class="ml-2" src="/assets/icons-simustream/Arrow-up-down.svg" alt="">
+                    </button>
+                    <div class="dropdown-menu filter-menu" aria-labelledby="dropdownMenu2">
+                      <button class="dropdown-item" type="button"
+                      (click)="filterFunc('Date published', 'publishedAt')">Date
+                      published</button>
+                      <button class="dropdown-item" type="button" (click)="filterFunc('Total viewers','views')">Total
+                        viewers</button>
+                      <button class="dropdown-item" type="button" (click)="filterFunc('Total sales','sales')">Total
+                        sales</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group form-filter btn-filter mr-3">
+                  <div class="dropdown filter">
+                    <button class="btn btn-secondary btn-w-100 dropdown-toggle" type="button" id="dropdownMenu2"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img class="mr-2" src="/assets/icons-simustream/filters.svg" alt="">
+                      Filters
+                      <img class="ml-2" src="/assets/icons-simustream/Arrow-up-down.svg" alt="">
+                    </button>
+                    <div class="dropdown-menu check text-center" #dropmenu>
+                      <form class=" pr-3 pl-3 pb-2">
+                        <div class="form-group">
+                          <label for="" class="float-left">Status</label>
+                          <div class="select-wrapper">
+                            <select class="form-control " [(ngModel)]="filterKeys.status" name="filterKey" (change)="applyFilter(dropmenu)"
+                              id="filterKey">
+                              <option value="" selected disabled>Status</option>
+                              <option value="publish" selected>Published</option>
+                              <option value="unpublish">Unpublished</option>
+                            </select>
+                            <i class="fa fa-chevron-down"></i>
+                          </div>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-sign-in " (click)="applyFilter()">Apply</button> -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group form-filter mb-0">
+                  <div class="btn-group  btn-w-100" role="toolbar" aria-label="Basic example">
+                    <button type="checkbox" class="btn btn-multiple btn-left pt-1" (click)="switchDisplay('list')">
+                      <img *ngIf="displayStyle== 'grid'" src="/assets/icons-simustream/list-view.svg" alt="">
+                      <img *ngIf="displayStyle == 'list'" src="/assets/icons-simustream/list-view-active.svg" alt="">
+                    </button>
+                    <button type="checkbox" (click)="switchDisplay('grid')" class="btn btn-multiple btn-right pt-1">
+                      <img *ngIf="displayStyle== 'list'" src="/assets/icons-simustream/grid-view.svg" alt="">
+                      <img *ngIf="displayStyle == 'grid'" src="/assets/icons-simustream/grid-view-active.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+        <div class="height-ch p-0 col-sm-12" (scroll)="onElementScroll($event)" id="client">
+          <table *ngIf="displayStyle == 'list'" class="table bg" id="grid">
+            <thead>
+              <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of streams ; let i = index">
+                  <span class="cursor-pointer" (click)="item.status=='publish'? openStream(item._id) : null">
+                <td style="width: 7%" class="img-scene pl-0"><img src="{{item.video ?  item.video.thumbnail : item.thumbnail}}" alt=""></td>
+                <td class="pl-0" style="width: 40%">
+                  <div class="top-set"><span class="text"> {{item.name}}</span></div>
+                  <div>
+                    <span class="badge badge-light mt-2">{{item.category}}</span></div>
+                </td>
+                <td><div class="top-set"> <span class="text"> {{item.views ? item.views : 0}} </span><br> <span class="description-text font-regular">Total views</span></div>
+                </td>
+                <td> <div class="top-set"> <span class="text">${{item.sales ? totalSalesDecimalHandled(item.sales) : 0}} </span><br> <span class="description-text font-regular">Total sales</span></div>
+                </td>
+                <td class="" style="width: 15%"><div class="top-set"> <span
+                    [ngClass]="item.status == 'publish' ? 'badge badge-success': 'badge badge-light'">{{item.status == 'publish'? 'Published' : 'Unpublished' }}</span>
+                    <div>
+                      <span class="description-text font-regular">{{calculateDuration(item.createdAt)}} {{now ? 'ago':''}}</span>
+                    </div>
+                  </div>
+                  </td>
+                </span>
+                <td class="text-right">
+                  <div class="dropdown ">
+                    <button class="btn btn-more " type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <img src="/assets/More.svg" alt="more">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right ">
+                        <button class="dropdown-item" [disabled]="apiLimits.maxVideosLimitReached && item.status!='publish'"
+                        (click)="changeStatus({status: item.status,_id:item._id})">{{item.status == 'publish'? 'Unpublish' : 'Publish' }}</button>
+                      <div class="dropdown-divider"></div>
+                      <button class="dropdown-item"
+                      (click)="changeStatus({isArchive: item.isArchive,_id:item._id})">Unarchive</button>
+                      <!-- <div class="dropdown-divider"></div>                           -->
+                      <!-- <button class="dropdown-item" (click)="deleteStreamById(item._id)">Delete</button> -->
+                    </div>
+                  </div>
+                  <!-- <div ngbDropdown  class="d-inline-block">
+                    <button class="btn btn-more" id="dropdownBasic1" ngbDropdownToggle>
+                      <img src="/assets/More.svg" alt="more">
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button ngbDropdownItem class="dropdown-item">Archive</button>
+                      <button ngbDropdownItem class="dropdown-item"
+                        [routerLink]="['/edit-stream',item._id]">Edit</button>
+                      <button ngbDropdownItem class="dropdown-item">Share</button>
+                      <div class="dropdown-divider"></div>
+                      <button ngbDropdownItem class="dropdown-item" (click)="deleteStreamById(item._id)">Delete</button>
+                    </div>
+                  </div> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="displayStyle == 'grid'" class="row ml-2 mt-3 mr-2" id="grid">
+
+            <div class="col-md-3 card-count pl-0" *ngFor="let item of streams ; let i = index">
+              <div class="card stream mb-3">
+                <img src="{{item.video ?  item.video.thumbnail : item.thumbnail}}" class="card-img-top cursor-pointer" alt="..." (click)="item.status=='publish'? openStream(item._id) : null">
+                <div class="card-body">
+                  <p class="card-title">{{item.name}}</p>
+                  <div class="row">
+                    <div class="col"><span class="text">{{item.views ? item.views : 0}} </span><br> <span
+                        class="description-text font-regular">Total views</span></div>
+                    <div class="col"><span class="text">${{item.sales ? totalSalesDecimalHandled(item.sales) : 0}} </span><br> <span
+                        class="description-text font-regular">Total sales</span></div>
+                  </div>
+                  <div>
+                    <span
+                      [ngClass]="item.status == 'publish' ? 'badge badge-success mt-3': 'badge badge-light mt-3'">{{item.status == 'publish'? 'Published' : 'Unpublished' }}</span>
+                  </div>
+                  <div class="mt-1 row">
+                    <div class="col-9">
+                      <small class="text-muted">{{calculateDuration(item.createdAt)}} {{now ? 'ago':''}}</small>
+                    </div>
+                    <div class="col-3 text-right pr-0">
+                      <div class="dropdown ">
+                        <button class="btn btn-more rotate" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <img src="/assets/More.svg" alt="more">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right ">
+                            <button class="dropdown-item" [disabled]="apiLimits.maxVideosLimitReached && item.status!='publish'"
+                            (click)="changeStatus({status: item.status,_id:item._id})">{{item.status == 'publish'? 'Unpublish' : 'Publish' }}</button>
+                          <div class="dropdown-divider"></div>
+                          <button class="dropdown-item"
+                          (click)="changeStatus({isArchive: item.isArchive,_id:item._id})">Unarchive</button>
+                          <!-- <div class="dropdown-divider"></div>                           -->
+                          <!-- <button class="dropdown-item" (click)="deleteStreamById(item._id)">Delete</button> -->
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+      <div class="row pt-2 m-0 mt-2 mb-1 create-stream-bottom">
+        <main-stream-button-app 
+        [buttonTitle]='buttonTitle'
+        [navigateTo]='buttonNavigation'
+        [isCardExpired]='isCardExpired'
+        [isActive]='isActive'
+        [isApiLimitReached]='isApiLimitReached'
+        [currentPage]='currentPage'></main-stream-button-app>
+        </div>
+    </div>
+
+  </div>

@@ -1,0 +1,53 @@
+<div class="container-fluid container-choose-method">
+  <div class="row content-center">
+    <div class="col-md-12 p-4 bg mt-4 border-style  shadow-box">
+      <div class="row">
+        <!-- <div *ngIf="loader" class="loader-center">
+          <loader-spinner></loader-spinner>
+        </div> -->
+        <div class="col-md-6 store-logo b-r height-ch">
+          <div>
+            <!-- <img src="/assets/store-logos/shopifyLogo.png" alt=""> -->
+            <span class="mode-head">
+              <h4>Create Custom Form</h4>
+            </span>
+            <div class="form-group mb-4">
+              <label for=""></label>
+            </div>
+            <div class="form-check radio-toolbar">
+              <input class="form-check-input" type="radio" name="customForm" id="customForm" value="customForm"
+                [(ngModel)]="formMode" checked>
+              <label class="form-check-label" for="customForm">
+                Create your own
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 store-logo height-ch">
+          <div>
+            <!-- <img src="/assets/store-logos/shopifyLogo.png" alt=""> -->
+            <span class="mode-head">
+              <h4>Create from Template</h4>
+            </span>
+            <div class="form-group mb-4">
+              <label for=""></label>
+            </div>
+            <div class="form-check radio-toolbar">
+              <input class="form-check-input" type="radio" name="templateForm" id="templateForm" value="templateForm"
+                [(ngModel)]="formMode">
+              <label class="form-check-label" for="templateForm">
+                Use Template Form
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mt-3 pl-0 pr-0">
+      <button class="btn btn-primary btn-w-100 content-right" (click)="nextFunction()">Next
+        <img class="ml-3" src="assets/icons-simustream/Arrow_Right.svg" alt=""></button>
+      <button class="btn btn-gery-transparent  btn-w-100 btn-cancel" (click)="cancelStream()">Cancel</button>
+    </div>
+  </div>
+</div>

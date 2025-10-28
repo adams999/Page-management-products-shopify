@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+// @font-face {
+//     font-family: 'Sofia Pro Light';
+//     src: url('/assets/font/fonts/SofiaProLight') format('openType');
+//     font-weight: normal;
+//   }
+
+@font-face {
+  font-family: sofia-pro;
+  src: url("/assets/font/SofiaProSemiBold.ttf") format("opentype");
+}
+@font-face {
+  font-family: sofia-pro-medium;
+  src: url("/assets/font/SofiaProMedium.ttf") format("opentype");
+}
+@font-face {
+  font-family: sofia-pro-regular;
+  src: url("/assets/font/SofiaProRegular.ttf") format("opentype");
+}
+@font-face {
+  font-family: sofia-pro-light;
+  src: url("/assets/font/SofiaProLight.ttf") format("opentype");
+}
+@import "~bootstrap/scss/bootstrap.scss";
+@import "styles/variables";
+@import "styles/typography";
+@import "styles/styles";
+@import "styles/btns";
+@import "styles/icons";
+@import "styles/table";
+@import "styles/form";
+@import "styles/analytics-card";
+@import "styles/loader-spinner";
+@import "styles/responsiveness";
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+@import "../node_modules/animate.css/animate.css";

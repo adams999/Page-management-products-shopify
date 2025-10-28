@@ -1,0 +1,73 @@
+<button class="btn btn-grey-transparent hamburger">
+  <span class="ml-1 open-nav" (click)="openNav()">&#9776;</span>
+</button>
+
+<div class="sidenav" id="mySidenav">
+  <div class="simu-logo"> SIMUSTREAM </div>
+  <div class="a-line-height">
+    <a href="javascript:void(0)" class="closebtn" id="close">&times;</a>
+    <a (click)="customNavigate('analytics-overview')"> <img class="icon" src="/assets/icons-simustream/Dashboard.svg"
+        alt="more">Dashboard</a>
+    <a data-toggle="collapse" id="streams" href="#multiCollapseExample1" role="button" aria-expanded="false"
+      aria-controls="multiCollapseExample1"><img class="icon" src="/assets/icons-simustream/Streams.svg"
+        alt="more">Streams
+      <span class="icon-down"> <i class="fa fa-chevron-down"></i></span> </a>
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <a (click)="customNavigate('list-streams')">Active</a>
+      <a [routerLink]="['/archive-streams']">Archive</a>
+    </div>
+    <a (click)="customNavigate('list-products')"><img class="icon" src="/assets/icons-simustream/Products.svg"
+        alt="more">Products</a>
+    <a (click)="customNavigate('list-orders')"><img class="icon" src="/assets/icons-simustream/Orders.svg"
+        alt="more">Orders</a>
+    <!-- <a (click)="customNavigate('list-leads-forms')"><span class="leads-form-icon"><i
+          class="fab fa-wpforms"></i></span>Leads</a> -->
+          <a data-toggle="collapse" id="leads" href="#multiCollapseExample2" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample2"><span class="leads-form-icon"><i
+            class="fab fa-wpforms"></i></span>Leads
+          <span class="icon-down"> <i class="fa fa-chevron-down"></i></span> </a>
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+          <a (click)="customNavigate('list-leads-forms')">Forms</a>
+          <a [routerLink]="['/list-templates']">Templates</a>
+        </div>
+
+    <a (click)="customNavigate('profile-settings')"><img class="icon" src="/assets/icons-simustream/Settings.svg"
+        alt="more">Settings</a>
+    <!--
+     /**
+     * @Author: andersson arellano
+     * @Date: 2021-08-05 18:31:41
+     * @Desc:  add link Accounts
+     */
+    -->
+    <a (click)="customNavigate('accounts')" *ngIf="splitIoService.isTreatmentOn('channel-youtube')"><img class="icon" src="/assets/icons-simustream/Settings.svg"
+      alt="more">Accounts</a>
+    <!-- <a (click)="logOut()"><img src="/assets/icons-simustream/Settings.svg" alt="more">Sign Out</a> -->
+    <div class="abs_route col-12">
+      <div class="row">
+        <div class="col-2 img-container">
+          <img src={{user.imageUrl}} alt="" class="circle">
+        </div>
+        <div class="col-10 name-sec ">
+          <!-- <select class="color-darkblue" (change)="selectedOption($event.target.value)">
+                <option value="{{user?.firstName}}&nbsp;{{user?.lastName}}">{{user?.firstName}}&nbsp;{{user?.lastName}}</option>
+                <option value="settings">Settings</option>
+                <option value="signout">Sign out</option>
+              </select> -->
+          <span class="dropdown settings">
+            <button class="btn btn-secondary dropdown-toggle sortby title-btn" type="button" id="dropdownMenu2"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{dropDown}}
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-menu filter-menu" aria-labelledby="dropdownMenu2">
+              <button class="dropdown-item" type="button" (click)="selectedOption('settings')">Settings</button>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item" type="button" (click)="selectedOption('signout')">Sign Out</button>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

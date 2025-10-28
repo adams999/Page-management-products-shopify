@@ -1,0 +1,23 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: sofia-pro, sans-serif !important;
+  color: $dark-blue !important;
+  // font-weight: 600 !important;
+}
+.font-medium {
+  font-family: sofia-pro-medium, sans-serif !important;
+}
+.font-regular {
+  font-family: sofia-pro-regular, sans-serif !important;
+}
+body {
+  font-family: sofia-pro, sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  background-color: $fill-gray !important;
+}

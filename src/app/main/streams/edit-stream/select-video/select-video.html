@@ -1,0 +1,100 @@
+<div class="container-fluid p-5">
+  <div class="row content-center">
+      <div class="col-md-12  pl-0 text-left">
+          <h5> Videos</h5>
+        </div>
+        
+   <div *ngIf="!connectedSource && !signIn" class="col-md-12 p-4 bg border-style store-logo shadow-box">
+      <div class="">
+        <img src="/assets/store-logos/youtubeLogo.png" alt="">
+
+        <div class="text-sign-in mb-4">
+          <p> Connect yout Youtube account to import videos.</p>
+        </div>
+        <button class="btn btn-sign-in-videos" (click)="connectVideoSource()">Connect to Youtube</button>
+      </div>
+    </div>
+    <div *ngIf="signIn && !connectedSource" class="col-md-12 p-4 bg mt-4 border-style store-logo shadow-box">
+      <div class="col-md-4">
+        <img src="/assets/store-logos/youtubeLogo.png" alt="">
+
+        <div class="form-group mb-3">
+          <label for=""></label>
+          <input type="text" class="form-control" [(ngModel)]="channelId" id="channelId" name="channelId"
+            placeholder="channelID">
+        </div>
+        <button class="btn btn-sign-in-videos" (click)="addChannel()">Connect YouTube</button>
+      </div>
+    </div>
+    <div *ngIf="signIn && connectedSource" class="col-md-12 bg p-0 border-style  shadow-box">
+      <button *ngIf="signIn && connectedSource && !loader" id="slide-left" type="button"
+        class="round-buttons btn-nav btn-left" (click)="sliderLeft()"><img src="assets/icons-simustream/chevron-arrow-left-lunacy.svg" alt=""></button>
+      <button *ngIf="signIn && connectedSource && !loader" id="slide-right" type="button"
+        class="round-buttons btn-nav btn-right" (click)="sliderRight()"><img src="assets/icons-simustream/chevron-arrow-right-lunacy.svg" alt=""></button>
+      <div class="description-text mt-4 pl-4 set-text">Pick the video from your Youtube account</div>
+      <div *ngIf="loader" class="loader-center loader-add-products">
+        <loader-spinner></loader-spinner>
+      </div>
+      <div *ngIf="!loader" class="display-set p-4 w-100 text-center" id="slide-container">
+        <div class="card border-style" id="content" (click)="selectVideo(vid._id)" *ngFor="let vid of videos"
+          [ngClass]="vid._id == videoId?'card-selected':''">
+          <img class="card-img-top" src="{{vid.thumbnail}}" alt="Card image cap">
+          <div class="card-body pl-2 pr-2">
+            <p class="card-text mb-0">{{vid.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="col-md-12 bg p-4 mt-4 border-style  shadow-box">
+      <div class="description-text ">Fill in Stream details</div>
+      <form name="sign-up">
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Stream Name</label>
+                  <input type="text" class="form-control mt-1" [(ngModel)]="streamDetails.name" id="streamName"
+                    name="streamName" placeholder="">
+                  <!-- <label for="">Description</label>
+                  <textarea class="form-control" id="description" rows="3" [(ngModel)]="streamDetails.description"
+                    name="description" placeholder="Start typing..."></textarea> -->
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <!-- <label for="">Category</label>
+                  <div class="select-wrapper">
+                    <select class="form-control  ht-40" [(ngModel)]="streamDetails.category" name="category"
+                      id="category">
+                      <option selected disabled value="">Select category</option>
+                      <option value="active">Active</option>
+                      <option value="deactive">Deactive</option>
+                    </select>
+                    <i class="fa fa-chevron-down"></i>
+                  </div> -->
+                  <label for="">Description</label>
+                  <textarea class="form-control mt-1" id="description" rows="3" [(ngModel)]="streamDetails.description"
+                    name="description" placeholder="Start typing..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="row mt-3 mb-3 content-right">
+    <button class="btn btn-primary" (click)="submitStreamDetails()">Edit
+      Stream<img class="ml-3" src="assets/icons-simustream/Arrow_Right.svg" alt=""></button>
+  </div>
+  <div class="row mt-3 mb-3 content-left">
+    <button class="btn btn-gery-transparent"(click)="cancel()">Cancel</button>
+  </div>
+</div>

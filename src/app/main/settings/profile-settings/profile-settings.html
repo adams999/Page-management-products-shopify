@@ -1,0 +1,1219 @@
+<div class="container-fluid">
+  <app-dashboard-header [header]="header"></app-dashboard-header>
+  <div class="m-0 row">
+    <div class="col-md-12 bg border-style shadow-box profile-form">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="description-text form-head">Profile Information</div>
+          <form
+            name="sign-up"
+            [formGroup]="profileForm"
+            (ngSubmit)="updateUser()"
+          >
+            <div class="mt-3 row">
+              <div class="col-md-12">
+                <div class="row form-base">
+                  <!--
+							@Author: Publio Quintero
+							@Data: 2021-07-14 09:25:04
+							@Desc: Additional information, configuration and options
+							@id: add_info_conf_opt
+						 -->
+                  <fieldset class="mb-5 border col-md-12">
+                    <legend>Additional Info</legend>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label for="">User Id</label>
+                          <input
+                            type="text"
+                            class="mt-1 form-control"
+                            formControlName="pq_userId"
+                            id="pq_userId"
+                            name="pq_userId"
+                            placeholder="pq_userId"
+                            maxlength="40"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-md-7">
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: start;
+                            align-items: flex-end;
+                          "
+                        >
+                          <div class="form-group col-md-8">
+                            <label for="">Install on Shopify</label>
+                            <input
+                              class="mt-1 form-control"
+                              placeholder="Store name ex. simutest"
+                              formControlName="store_name"
+                              (ngModelChange)="saverange($event)"
+                            />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="">&nbsp;</label>
+                            <a
+                              class="btn btn-dark"
+                              target="_blank"
+                              href="https://store.simustream.com/shopify?shop={{store_name}}.myshopify.com&accountType=shopify&user={{user_id}}"
+                            >
+                              Install
+                            </a>
+                          </div>
+                        </div>
+                        <div
+                          class="col-md-12"
+                          style="display: flex; justify-content: flex-start"
+                        >
+                          <a
+                            target="_blank"
+                            class="mr-2"
+                            href="https://api-v1.simustream.com/api/v1/web/accounts/restart-account/{{user_id}}/shopify"
+                            >Remove from shopify</a
+                          >
+                          <!--|
+                          <a
+                            class="ml-2"
+                            target="_blank"
+                            href="https://api-v1.simustream.com/api/v1/web/accounts/restart-account/{{user_id}}/youtube"
+                            >Remove from youtube</a
+                          >-->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <!--<div class="form-group">
+                        <label for=""> Please add the ID of your video</label>
+                        <div style="display:flex; align-items: center; width:100%">
+									<div class="mr-2 text-secondary font-weight-light">https://www.youtube.com/watch?v=</div>
+                          <div>
+                            <input
+                              type="text"
+                              class="mt-1 form-control"
+                              formControlName="endStream"
+                              id="endStream"
+                              name="endStream"
+                              placeholder="pFnD8tVI6P"
+                              maxlength="40"
+                            />
+                          </div>
+                        </div>
+                      </div>-->
+                      <div class="mt-3 form-group">
+                        <div class="row">
+                          <div
+                            class="p-1 col-md-12 text-seconday border-bottom"
+                          >
+                            Upload end message
+                          </div>
+                        </div>
+								<div class="mt-4 row d-none justify-content-center" id="loading_gif">
+									<img src="../../../../assets/icons-simustream/loading.gif" alt="">
+								</div>
+                        <div class="row" id="form_end_stream">
+                          <div class="col-md-3">
+                            <label for="" class="col-md-12">Type</label>
+                            <div>
+                              <select
+                                class="custom-select"
+                                formControlName="pq_type"
+                                (ngModelChange)="typeUpload($event)"
+                              >
+                                <option value="image">Image</option>
+                                <option value="video">Video</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-3 d-none" id="source_stream_end">
+                            <label for="" class="col-md-12">Source</label>
+                            <div>
+                              <select
+                                class="custom-select d-none"
+                                id="for_videos"
+                                formControlName="pq_source_video"
+                                (ngModelChange)="typeSource($event)"
+                              >
+                                <option value="computer">Computer</option>
+                                <option value="url">URL</option>
+                                <option value="youtube">Youtube</option>
+                              </select>
+                              <select
+                                class="custom-select d-none"
+                                id="for_images"
+                                formControlName="pq_source_image"
+                                (ngModelChange)="typeSource($event)"
+                              >
+                                <option value="computer">Computer</option>
+                                <option value="url">URL</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6 d-none" id="pc_upload">
+                            <label for="" class="col-md-12">Upload</label>
+                            <div>
+                              <div
+                                class="custom-file"
+                                style="padding-top: -20px"
+                              >
+                                <input
+                                  type="file"
+                                  class="custom-file-input"
+                                  id="customFile"
+                                  formControlName="from_pc"
+                                  (change)="updateImageOrVideo($event,'endStream')"
+                                />
+                                <label
+                                  class="custom-file-label"
+                                  style="margin-top: 0"
+                                  for="customFile"
+                                  >Choose file</label
+                                >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6 d-none" id="url_upload">
+                            <label for="" class="col-md-12">URL</label>
+                            <div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                formControlName="from_url"
+                                placeholder="http://test.com/"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6 d-none" id="youtube_upload">
+                            <label for="" class="col-md-12">Video Id</label>
+                            <div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                formControlName="from_youtube"
+                                placeholder="69205gXjths"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+						  <ul class="text-secondary">
+							  <li>Recommend size for image 1920 x 1080 or ratio 16:9</li>
+							  <li>Video format recommend .mp4|.web|.ogg preferably less that 10mb</li>
+							  <li>The Video URl should be the recommend format in any size</li>
+							  <li>Only youtube support</li>
+							  <li>Youtube id video: <span style="color:lightgrey">https://www.youtube.com/watch?v=</span><span class="text-dark">qJQqnLHw10Y</span></li>
+						  </ul>
+                  </fieldset>
+                  <!--
+							@EndId: add_info_conf_opt
+						-->
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">First Name</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="firstName"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="First Name"
+                        maxlength="40"
+                      />
+                      <!-- <span class="errormsg" *ngIf="user.firstName && !checkValid(user.firstName,'firstName')">*Please
+                        enter
+                        a valid firstname.</span> -->
+                      <div
+                        *ngIf="(pSubmitted || profileForm.controls.firstName.touched) && profileForm.controls.firstName.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="profileForm.controls.firstName.errors.required"
+                        >
+                          *This field is required
+                        </div>
+                        <div
+                          *ngIf="profileForm.controls.firstName.errors.maxlength"
+                        >
+                          *This field should be maximum 40 characters long
+                        </div>
+                        <div
+                          *ngIf="profileForm.controls.firstName.errors.pattern"
+                        >
+                          *Please Enter a valid input
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Last Name</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="lastName"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Last Name"
+                        maxlength="40"
+                      />
+                      <div
+                        *ngIf="(pSubmitted || profileForm.controls.lastName.touched) && profileForm.controls.lastName.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="profileForm.controls.lastName.errors.required"
+                        >
+                          *This field is required
+                        </div>
+                        <div
+                          *ngIf="profileForm.controls.lastName.errors.maxlength"
+                        >
+                          *This field should be maximum 40 characters long
+                        </div>
+                        <div
+                          *ngIf="profileForm.controls.lastName.errors.pattern"
+                        >
+                          *Please Enter a valid input
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">Email</label>
+                      <input
+                        type="email"
+                        class="mt-1 form-control"
+                        formControlName="email"
+                        id="email"
+                        name="email"
+                        placeholder="johndoe@email.com"
+                        maxlength="50"
+                        readonly
+                      />
+                      <a
+                        href=""
+                        class="float-right txt-size"
+                        (click)="$event.preventDefault();change = 'email';resetForms('email')"
+                        data-toggle="modal"
+                        data-target="#changeEmailPass"
+                        >Change email</a
+                      ><br />
+                      <div
+                        *ngIf="(pSubmitted || profileForm.controls.email.touched) && profileForm.controls.email.errors"
+                        class="errormsg"
+                      >
+                        <div *ngIf="profileForm.controls.email.errors.required">
+                          *This field is required
+                        </div>
+                        <div *ngIf="profileForm.controls.email.errors.pattern">
+                          *Please Enter a valid input
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">Password</label>
+                      <input
+                        type="password"
+                        class="mt-1 form-control"
+                        formControlName="password"
+                        id="password"
+                        name="password"
+                        placeholder="password"
+                        readonly
+                      />
+                      <a
+                        href=""
+                        class="float-right txt-size"
+                        (click)="$event.preventDefault();change = 'password';resetForms('password')"
+                        data-toggle="modal"
+                        data-target="#changeEmailPass"
+                        >Change password</a
+                      ><br />
+                      <div
+                        *ngIf="(pSubmitted || profileForm.controls.email.touched) && profileForm.controls.email.errors"
+                        class="errormsg"
+                      >
+                        <div *ngIf="profileForm.controls.email.errors.required">
+                          *This field is required
+                        </div>
+                        <div
+                          *ngIf="profileForm.controls.email.errors.minlength"
+                        >
+                          *Password should be of minimum 8 characters long.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Country</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="country"
+                        id="Country"
+                        name="Country"
+                        placeholder=""
+                      />
+                      <!-- <span class="errormsg" *ngIf="!checkValid(user.Country,'country')">*Please
+                          enter
+                          a valid country name.</span> -->
+                      <div
+                        *ngIf="(pSubmitted || profileForm.controls.country.touched) && profileForm.controls.country.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="profileForm.controls.country.errors.pattern"
+                        >
+                          *Please enter a valid input.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Phone Number</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="phoneNumber"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        placeholder=""
+                        maxlength="13"
+                      />
+                      <!-- <span class="errormsg" *ngIf="user.phoneNumber && !checkValid(user.phoneNumber,'phone')"></span> -->
+                      <div
+                        *ngIf="(pSubmitted || profileForm.controls.phoneNumber.touched) && profileForm.controls.phoneNumber.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="profileForm.controls.phoneNumber.errors.required"
+                        >
+                          *This field is required
+                        </div>
+                        <div
+                          *ngIf="profileForm.controls.phoneNumber.errors.minlength"
+                        >
+                          *Please enter a valid phone no(should be min 10
+                          characters and max 13 characters).
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">Address</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="address"
+                        id="address"
+                        name="address"
+                        placeholder="123 Avenue , NY"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">City</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="city"
+                        id="city"
+                        name="city"
+                        placeholder="NY"
+                      />
+                      <!-- <span class="errormsg" *ngIf="!checkValid(user.city,'city')">*Please
+                          enter
+                          a valid city name.</span> -->
+                      <div
+                        *ngIf="(pSubmitted || profileForm.controls.city.touched) && profileForm.controls.city.errors"
+                        class="errormsg"
+                      >
+                        <div *ngIf="profileForm.controls.city.errors.pattern">
+                          *Please enter a valid input.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">Postal Code</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="postalCode"
+                        id="postalCode"
+                        name="postalCode"
+                        placeholder="61105"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="content-center pt-2 m-0 mt-2 mb-1 row create-stream-bottom w-100"
+            >
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="pSubmitted = true;"
+              >
+                Update Profile
+              </button>
+            </div>
+            <!-- </div> -->
+          </form>
+        </div>
+        <div class="text-center col-md-5">
+          <!-- <div class="profile_img"> -->
+          <!-- <div class="iconhover"> -->
+          <img
+            class="avatar"
+            src="{{profileForm?.controls?.imageUrl?.value}}"
+            alt=""
+          />
+          <!-- <input type="file" accept="image/*" class="camera-icon" aria-hidden="true" /> -->
+          <!-- </div> -->
+          <div class="pt-2 image-options">
+            <div class="hyperlink a-image col-md-4">
+              <div class="pt-2">
+                <a
+                  href=""
+                  (click)="$event.preventDefault();chooseFile('avatar')"
+                  >Update photo</a
+                ><br />
+                <input
+                  [hidden]="true"
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  (change)="uploadImage($event,'avatar')"
+                />
+              </div>
+              <div class="pt-2">
+                <a href="" (click)="$event.preventDefault();deleteImage()"
+                  >Delete photo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 bg border-style shadow-box profile-form">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="description-text form-head">Company Information</div>
+          <form
+            name="sign-up"
+            [formGroup]="companyForm"
+            (ngSubmit)="submitCompanyInfo()"
+          >
+            <div class="mt-3 row">
+              <div class="col-md-12">
+                <div class="row form-base">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">Company Name</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="name"
+                        id="cname"
+                        name="companyName"
+                        placeholder="Company Name"
+                        maxlength="40"
+                      />
+                      <!-- <span class="errormsg" *ngIf="user.firstName && !checkValid(user.firstName,'firstName')">*Please
+                        enter
+                        a valid firstname.</span> -->
+                      <div
+                        *ngIf="(cSubmitted || companyForm.controls.name.touched) && companyForm.controls.name.errors"
+                        class="errormsg"
+                      >
+                        <div *ngIf="companyForm.controls.name.errors.required">
+                          *This field is required
+                        </div>
+                        <div *ngIf="companyForm.controls.name.errors.maxlength">
+                          *This field should be maximum 40 characters long
+                        </div>
+                        <div *ngIf="companyForm.controls.name.errors.pattern">
+                          *Please Enter a valid input
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">Company Type</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="type"
+                        id="ctype"
+                        name="ctype"
+                        placeholder="Company Type"
+                        maxlength="50"
+                      />
+                      <div
+                        *ngIf="(cSubmitted || companyForm.controls.type.touched) && companyForm.controls.type.errors"
+                        class="errormsg"
+                      >
+                        <div *ngIf="companyForm.controls.type.errors.required">
+                          *This field is required
+                        </div>
+                        <div *ngIf="companyForm.controls.type.errors.pattern">
+                          *Please Enter a valid input
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">EIN</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="ein"
+                        id="ein"
+                        name="ein"
+                        placeholder=""
+                      />
+                      <!-- <span class="errormsg" *ngIf="!checkValid(user.Country,'country')">*Please
+                        enter
+                        a valid country name.</span> -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Website</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="website"
+                        id="cweb"
+                        name="companyWebsite"
+                        placeholder=""
+                      />
+                      <!-- <span class="errormsg" *ngIf="user.phoneNumber && !checkValid(user.phoneNumber,'phone')">*Please
+                        enter a valid phone
+                        no(should be min 10 characters and max 13 characters ).</span> -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Country</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="country"
+                        id="cty"
+                        name="country"
+                        placeholder=""
+                      />
+                      <!-- <span class="errormsg" *ngIf="!checkValid(user.Country,'country')">*Please
+                        enter
+                        a valid country name.</span> -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">Phone Number</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="phone"
+                        id="phNumber"
+                        name="phoneNumber"
+                        placeholder=""
+                      />
+                      <div
+                        *ngIf="(cSubmitted || companyForm.controls.phone.touched) && companyForm.controls.phone.errors"
+                        class="errormsg"
+                      >
+                        <div *ngIf="companyForm.controls.phone.errors.required">
+                          *This field is required
+                        </div>
+                        <div
+                          *ngIf="companyForm.controls.phone.errors.minlength"
+                        >
+                          *Please enter a valid phone no(should be min 10
+                          characters and max 13 characters).
+                        </div>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">Address</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="address"
+                        id="adres"
+                        name="address"
+                        placeholder="123 Avenue , NY"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">City</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="city"
+                        id="ccity"
+                        name="city"
+                        placeholder="NY"
+                      />
+                      <!-- <span class="errormsg" *ngIf="!checkValid(user.city,'city')">*Please
+                        enter
+                        a valid city name.</span> -->
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">Postal Code</label>
+                      <input
+                        type="text"
+                        class="mt-1 form-control"
+                        formControlName="postalCode"
+                        id="cpostalCode"
+                        name="postalCode"
+                        placeholder="61105"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="content-center pt-2 m-0 mt-2 mb-1 row create-stream-bottom w-100"
+            >
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="cSubmitted = true;"
+              >
+                Update Company
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="text-center col-md-5">
+          <!-- <div class="profile_img"> -->
+          <!-- <div class="iconhover"> -->
+          <img
+            class="avatar"
+            src="{{companyForm?.controls?.logo?.value || defaultProductImage}}"
+            alt=""
+          />
+          <!-- <input type="file" accept="image/*" class="camera-icon" aria-hidden="true" /> -->
+          <!-- </div> -->
+          <div class="pt-2 image-options">
+            <div class="hyperlink a-image col-md-4">
+              <div class="pt-2">
+                <a href="" (click)="$event.preventDefault();chooseFile('logo')"
+                  >Update logo</a
+                ><br />
+                <input
+                  [hidden]="true"
+                  type="file"
+                  id="logo"
+                  accept="image/*"
+                  (change)="uploadImage($event,'logo')"
+                />
+              </div>
+              <div class="pt-2">
+                <a
+                  href=""
+                  (click)="$event.preventDefault();deleteCompanyImage()"
+                  >Delete logo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 bg border-style shadow-box profile-form">
+      <div class="mt-4 description-text set-text">Linked Accounts</div>
+      <div class="mt-3 mb-3 row user-accounts">
+        <div
+          class="account-message col-12"
+          [hidden]="!errorMessage.accountMessage"
+        >
+          {{errorMessage.accountMessage}}
+        </div>
+        <div
+          [hidden]="errorMessage.accountMessage"
+          class="col-md-3 col-lg-3 col-xs-3"
+          *ngFor="let account of userLinkedAccounts"
+        >
+          <div class="card default-card2 col-md-12 colorbg">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-7 plan-title make-center">
+                <!-- <i class="fa fa-youtube-play fa-5x" style="color:red" aria-hidden="true"></i> -->
+                <img
+                  src="{{account?.accountType == 'youtube'? accountImages.youtubeImg : accountImages.shopifyImg}}"
+                  [ngClass]="account?.accountType == 'youtube'? 'youtube_icon':'shopify_icon'"
+                />
+              </div>
+              <div class="text-center col-xs-12 col-sm-12 col-md-5">
+                <div class="mt-4">{{account?.accountType | titlecase }}</div>
+                <div>Summary: {{ account.count }}</div>
+              </div>
+              <!-- <div> -->
+              <!-- </div> -->
+            </div>
+            <!-- <i class="fa fa-close account-selected hide-btn"></i> -->
+          </div>
+        </div>
+        <!-- <div class="col-md-3 col-lg-3 col-xs-3">
+          <div class="card default-card col-md-12 colorbg">
+            <div class="row">
+              <div class="col-md-4 plan-title">
+                <img src="" class="shopify_icon">
+              </div>
+              <div class="text-center col-md-8 accpadding">
+                Shopify
+              </div>
+            </div>
+             <i class="fa fa-close account-selected hide-btn"></i>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-md-12 bg border-style shadow-box profile-form">
+      <div class="mt-4 description-text set-text">Plans</div>
+
+      <div class="mt-3 mb-3 row user-accounts">
+        <div [hidden]="!loader" class="col-12 loader-center">
+          <loader-spinner></loader-spinner>
+        </div>
+        <div
+          [hidden]="loader"
+          class="col-md-4"
+          *ngFor="let plan of plansToUpgrade; let i = index"
+        >
+          <div
+            class="card default-card col-md-12"
+            [ngClass]="!plan.isDisabled ? 'disables' : ''"
+          >
+            <div class="row">
+              <div class="col-md-8 plan-title">
+                <div>
+                  <h5>Plan: {{plan.title}}</h5>
+                </div>
+                <div>
+                  <p class="mb-1">
+                    Subscription: ${{plan.subscriptionFee}}
+                    <span class="description-text">/mon</span>
+                  </p>
+                </div>
+                <div>
+                  <span class="description-text">
+                    Video Views: {{plan.apiLimit.videoViews}}
+                  </span>
+                </div>
+                <div>
+                  <span class="description-text">
+                    Transactions: {{plan.apiLimit.transactions}}
+                  </span>
+                </div>
+                <div>
+                  <span class="description-text">
+                    Transaction Fee: {{plan.transactionFee}}%
+                  </span>
+                </div>
+                <div>
+                  <span class="description-text">
+                    Max Videos: {{plan.apiLimit.maxVideos}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="pr-0 text-right col-md-4">
+                <div class="dropdown" [hidden]="!plan.isDisabled">
+                  <button
+                    class="btn btn-sign-in upgrade-button"
+                    (click)="openUpgradeModal(plan)"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="modal"
+                    data-target="#planModal"
+                  >
+                    Upgrade
+                  </button>
+                </div>
+                <div [hidden]="!plan.isSelected">
+                  <i class="fa fa-check plan-selected"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 bg border-style shadow-box profile-form">
+      <div class="mt-4 description-text set-text">Invite</div>
+      <div class="mt-3 row user-accounts">
+        <div class="col-md-7">
+          <form name="sign-up" (ngSubmit)="sendReferralCode()">
+            <div class="row form-base">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="">Referral Code</label>
+                  <input
+                    type="email"
+                    class="mt-1 form-control"
+                    [(ngModel)]="referralData.referralEmail"
+                    id="referralEmail"
+                    name="referralEmail"
+                    placeholder="john@example.com"
+                  />
+                  <span
+                    class="errormsg"
+                    *ngIf="referralData.referralEmail && !checkValid(referralData.referralEmail,'refemail')"
+                    >*please enter a valid email.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="response" *ngIf="responseMessage.emailSent">
+              {{responseMessage.emailSent}}
+            </div>
+            <div class="response text-red" *ngIf="responseMessage.errorEmail">
+              * {{responseMessage.errorEmail}}
+            </div>
+            <div
+              class="content-center pt-2 m-0 mt-2 mb-1 row create-stream-bottom w-100"
+            >
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="buttonDisable || !userIsActive || !checkValid(referralData.referralEmail,'refemail')"
+              >
+                Send Invite
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="planModal"
+    tabindex="-1"
+    data-backdrop="true"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="text-center modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Upgrade to {{planName}}
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true" #closebutton>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="!paymentCheck">
+            <ngx-stripe-card
+              [options]="cardOptions"
+              [elementsOptions]="elementsOptions"
+            ></ngx-stripe-card>
+          </div>
+          <div *ngIf="paymentCheck">
+            <h5>
+              Are you sure you want to updgrade your plan to {{planName}}?
+            </h5>
+          </div>
+        </div>
+        <div class="pt-0 text-center modal-footer row">
+          <div class="col-12">
+            <div class="error-handle" [hidden]="!errorMessage.cardResponse">
+              <p class="text-red">*{{errorMessage.cardResponse}}</p>
+            </div>
+          </div>
+          <div *ngIf="!paymentCheck" class="col-12">
+            <button
+              type="button"
+              [disabled]="disableButton"
+              class="mt-2 btn btn-sign-in"
+              (click)="upgradePlan()"
+              id="closeModal"
+            >
+              Proceed
+            </button>
+          </div>
+          <div *ngIf="paymentCheck" class="col-12">
+            <div class="text-center col-md-12">
+              <button
+                type="submit"
+                class="mt-2 mr-2 btn btn-sign-in"
+                [disabled]="disableButton"
+                (click)="upgradeWithPayment()"
+              >
+                Yes
+              </button>
+              <button
+                type="submit"
+                class="mt-2 ml-2 btn btn-sign-in"
+                [disabled]="disableButton"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="changeEmailPass"
+    tabindex="-1"
+    role="dialog"
+    data-backdrop="static"
+    aria-labelledby="changeEmailPass"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="text-center modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Change {{change}}
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #closeChangeModal
+            (click)="resetForms(change)"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            name="change"
+            *ngIf="change == 'email'"
+            [formGroup]="changeEmail"
+          >
+            <div class="mt-3 row">
+              <div class="col-md-12">
+                <div class="row form-base">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">Current Password</label>
+                      <input
+                        type="password"
+                        class="mt-1 form-control"
+                        formControlName="currentPassword"
+                        id="cpassword"
+                        name="cpassword"
+                        placeholder="current password"
+                      />
+                      <div
+                        *ngIf="(chSubmitted || changeEmail.controls.currentPassword.touched) && changeEmail.controls.currentPassword.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="changeEmail.controls.currentPassword.errors.required"
+                        >
+                          *This field is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">New Email</label>
+                      <input
+                        type="email"
+                        class="mt-1 form-control"
+                        formControlName="newEmail"
+                        id="new_email"
+                        name="new_email"
+                        placeholder="johndoe@email.com"
+                        maxlength="50"
+                      />
+                      <div
+                        *ngIf="(chSubmitted || changeEmail.controls.newEmail.touched) && changeEmail.controls.newEmail.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="changeEmail.controls.newEmail.errors.required"
+                        >
+                          *This field is required
+                        </div>
+                        <div
+                          *ngIf="changeEmail.controls.newEmail.errors.pattern"
+                        >
+                          *Please Enter a valid input
+                        </div>
+                      </div>
+                    </div>
+                    <div class="errormsg" *ngIf="changeModalError">
+                      *{{changeModalError}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="content-center pt-2 m-0 mt-2 mb-1 row create-stream-bottom w-100"
+            >
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="chSubmitted = true;updateCredentials()"
+              >
+                Change
+              </button>
+            </div>
+          </form>
+          <form
+            name="change"
+            *ngIf="change == 'password'"
+            [formGroup]="changePassword"
+          >
+            <div class="mt-3 row">
+              <div class="col-md-12">
+                <div class="row form-base">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">Current Password</label>
+                      <input
+                        type="password"
+                        class="mt-1 form-control"
+                        formControlName="currentPassword"
+                        id="curentpassword"
+                        name="cpassword"
+                        placeholder="current password"
+                      />
+                      <div
+                        *ngIf="(chPassSubmitted || changePassword.controls.currentPassword.touched) && changePassword.controls.currentPassword.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="changePassword.controls.currentPassword.errors.required"
+                        >
+                          *This field is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12" *ngIf="change == 'password'">
+                    <div class="form-group">
+                      <label for="">New Password</label>
+                      <input
+                        type="password"
+                        class="mt-1 form-control"
+                        formControlName="newPassword"
+                        id="npassword"
+                        name="npassword"
+                        placeholder="new password"
+                      />
+                      <div
+                        *ngIf="(chPassSubmitted || changePassword.controls.newPassword.touched) && changePassword.controls.newPassword.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="changePassword.controls.newPassword.errors.required"
+                        >
+                          *This field is required
+                        </div>
+                        <div
+                          *ngIf="changePassword.controls.newPassword.errors.minlength"
+                        >
+                          *Password should be of minimum 8 characters long.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">Confirm Password</label>
+                      <input
+                        type="password"
+                        class="mt-1 form-control"
+                        formControlName="confirmPassword"
+                        id="cpassword"
+                        name="confirmpassword"
+                        placeholder="new password"
+                      />
+                      <div
+                        *ngIf="(chPassSubmitted || changePassword.controls.confirmPassword.touched) && changePassword.controls.confirmPassword.errors"
+                        class="errormsg"
+                      >
+                        <div
+                          *ngIf="changePassword.controls.confirmPassword.errors.required"
+                        >
+                          *This field is required
+                        </div>
+                        <div
+                          *ngIf="changePassword.controls.confirmPassword.errors.mustMatch"
+                        >
+                          *Passwords must match
+                        </div>
+                      </div>
+                    </div>
+                    <div class="errormsg" *ngIf="changeModalError">
+                      *{{changeModalError}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="content-center pt-2 m-0 mt-2 mb-1 row create-stream-bottom w-100"
+            >
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="chPassSubmitted = true;updateCredentials()"
+              >
+                Change
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+</div>

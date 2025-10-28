@@ -1,0 +1,86 @@
+        <nav class="navbar navbar-expand-lg navbar-light mynavheader">
+                <a class="navbar-brand cursor-pointer" (click) = "customNavigate('')">
+                    <img class="brand-logo logomobile" src="/assets/icons-simustream/blue-simu-logo.svg" alt="">   
+                </a>
+                <button class="navbar-toggler noborder collapsed" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                    aria-controls="navbarTogglerDemo01" aria-label="Toggle navigation"
+                    
+                    >
+                    <span class="navbar-toggler-icon">
+                    </span>
+                    <span class="my-1 mx-2 close"><i class="icon ion-md-close"></i></span>
+                </button>
+                <div class="collapse navbar-collapse p-0 text-center" id="navbarTogglerDemo01">
+                    <div class="ml-auto navimprove1">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0 main-nav-bar navimprove">
+                            <li class="nav-item ">
+                                <a class="nav-link mt-1 menufont" routerLinkActive="navdown"
+                                data-toggle="collapse"
+                                data-target=".show"
+                                [routerLink]="['/about-us']"
+                                [queryParams]="{referralCode: referralCode, shop:shop}"
+                                (click) = "customNavigate('about-us')"
+                               >
+                               About us
+                                <div class="navactive"></div></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mt-1 menufont" routerLinkActive="navdown"
+                                data-toggle="collapse"
+                                data-target=".show"
+                                [routerLink]="['/subscription-plan']"
+                                [queryParams]="{referralCode: referralCode, shop:shop}"
+                                (click) = "customNavigate('subscription-plan')"
+                                >Pricing
+                                    <div class="navactive"></div></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mt-1 menufont" routerLinkActive="navdown"
+                                data-toggle="collapse"
+                                data-target=".show"
+                                [routerLink]="['/our-team']"
+                                [queryParams]="{referralCode: referralCode, shop:shop}"
+                                (click) = "customNavigate('our-team')"
+                                >Team
+                                    <div class="navactive"></div></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mt-1 menufont" routerLinkActive="navdown"
+                                data-toggle="collapse"
+                                data-target=".show"
+                                [routerLink]="['/contact-us']"
+                                [queryParams]="{referralCode: referralCode, shop:shop}"
+                                (click) = "customNavigate('contact-us')"
+                                >Contact
+                                    <div class="navactive"></div></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mt-1 menufont" routerLinkActive="navdown"
+                                href="https://intercom.help/simustream"
+                                >FAQs
+                                    <div class="navactive"></div></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mt-1 menufont" routerLinkActive="navdown" [routerLink]="['/sign-in']" [queryParams]="{referralCode: referralCode, shop:shop}"
+                                data-toggle="collapse"
+                                data-target=".show"
+                                (click) = "customNavigate('sign-in')"
+                                >Sign In
+                                    <div class="navactive"></div></a>
+                            </li>
+                            <li class="nav-item">
+                                <button [routerLink]="['/subscription-plan']" 
+                                data-toggle="collapse"
+                                data-target=".show"
+                                [routerLink]="['/subscription-plan']"
+                                [queryParams]="{referralCode: referralCode, shop:shop}"
+                                (click) = "customNavigate('subscription-plan')"
+                                class="btn btn-primary start-ft font-weight-light">Sign Up</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <form class="form-inline my-2 my-lg-0">
+                        
+                    </form> -->
+                </div>
+            </nav>

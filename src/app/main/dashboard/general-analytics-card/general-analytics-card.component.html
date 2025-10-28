@@ -1,0 +1,30 @@
+<div class="row pt-4">
+  <div class="col-xl-4 card-height mb-3" *ngFor="let analytics of generalCard  let i=index">
+    <div class="analytics-card">
+      <div class="row pt-3 pl-3 pr-3">
+        <div class="col-md-9 pr-0">
+          <div><span class="description-text">{{analytics.heading}}</span></div>
+          <div><span class="analytics-values"
+              *ngIf="analytics.heading === 'Video Conversion Rate'">{{analytics.totalValue}}%</span></div>
+          <div><span class="analytics-values"
+              *ngIf="analytics.heading !== 'Video Conversion Rate'">${{analytics.totalValue}}</span></div>
+        </div>
+        <div class="text-right chartIcon">
+          <img src="{{analytics.image}}">
+          <div *ngIf="analytics.statsValue; else defaultPercentage" class="pt-2"><span><img
+                src="{{analytics.statsImage}}"></span><span
+              class="pl-1" [ngClass] = "analytics.statsValue>0?'green-color':'red-color'">{{analytics.statsValue | number: '1.1-1'}}%</span>
+          </div>
+          <!-- <ng-template #defaultPercentage>
+            <div class="pt-2">
+              <span class="pl-1">0%</span>
+            </div>
+          </ng-template> -->
+        </div>
+      </div>
+      <div class="graphWrapper">
+        <canvas class="graph" id="barChart{{i}}"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

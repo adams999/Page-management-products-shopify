@@ -1,0 +1,45 @@
+<div class="container-fluid p-5">
+
+    <div class="row">
+        <div class="col-md-6 pt-3">
+            <h5>Overview</h5>
+        </div>
+        <div class="col-md-6  text-right">
+            <div class="dropdown filter">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="mr-2" src="/assets/icons-simustream/calender-filter.svg" alt="">
+                    {{dayFilter.text}}
+                    <img class="ml-2" src="/assets/icons-simustream/Arrow-up-down.svg" alt="">
+                </button>
+                <div class="dropdown-menu filter-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button" (click)="applyDaysFilter(0)">Last 7 days</button>
+                <button class="dropdown-item" type="button" (click)="applyDaysFilter(1)">Last 14 days</button>
+                <button class="dropdown-item" type="button" (click)="applyDaysFilter(2)">Last 30 days</button>
+                <button class="dropdown-item" type="button" (click)="applyDaysFilter(3)">Last 90 days</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <app-general-analytics-card [generalAnalytics]="generalAnalytics"></app-general-analytics-card>
+    <div class="row pt-3">
+        <div class="col-xl-6 p-0"> 
+            <div class="col-md-12 card-height">
+                <div class="analytics-card h-100 p-2 pl-3 heading-card">
+                    <h5 class="pt-2">Conversional Funnel</h5>
+                </div>
+            </div>
+            <app-conversional-funnel-analytics-card [generalAnalytics]="generalAnalytics">
+            </app-conversional-funnel-analytics-card>
+        </div>
+        <div class="col-xl-6 p-0 productsCard">
+            <div class="col-md-12 card-height">
+                <div class="analytics-card h-100 p-2 pl-3 heading-card">
+                    <h5 class="pt-2">Top Products</h5>
+                </div>
+            </div>
+            <app-top-products-analytics-card [dayFilter]="dayFilter"></app-top-products-analytics-card>
+        </div>
+    </div>
+    <app-line-chart-analytics-card></app-line-chart-analytics-card>
+</div>

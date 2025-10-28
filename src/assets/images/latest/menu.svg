@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="16px" viewBox="0 0 30 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>burger</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Homepage-+-responsive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mob---home" transform="translate(-323.000000, -28.000000)" fill="#FFFFFF">
+            <path d="M323,28 L353,28 L353,30 L323,30 L323,28 Z M323,35 L353,35 L353,37 L323,37 L323,35 Z M323,42 L353,42 L353,44 L323,44 L323,42 Z" id="burger"></path>
+        </g>
+    </g>
+</svg>

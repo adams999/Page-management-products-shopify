@@ -1,0 +1,113 @@
+
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .icon-admin1:before {
+    content: "\e900";
+    color: #979797;
+  }
+  .icon-attributes:before {
+    content: "\e901";
+    color: #9b9b9b;
+  }
+  .icon-brand:before {
+    content: "\e902";
+    color: #9b9b9b;
+  }
+  .icon-document:before {
+    content: "\e903";
+    color: #9b9b9b;
+    font-size: 16px !important;
+  }
+  .icon-home:before {
+    content: "\e904";
+    color: #9b9b9b;
+  }
+  .icon-inspiration:before {
+    content: "\e905";
+    color: #9b9b9b;
+    font-size: 16px !important;
+  }
+  .icon-manufacturer:before {
+    content: "\e906";
+    color: #9b9b9b;
+    font-size: 18px !important;
+  }
+  .icon-sample-request:before {
+    content: "\e907";
+    color: #9b9b9b;
+  }
+  .icon-tags:before {
+    content: "\e908";
+    color: #9b9b9b;
+  }
+  .icon-user:before {
+    content: "\e909";
+    color: #9b9b9b;
+  }
+  .icon-admin:before {
+    content: "\e90a";
+    color: #979797;
+  }
+
+  .icon-export:before {
+    content: "\e90b";
+    color: $brown !important;
+  }
+
+  .fa-circle{
+    color: #40DA91;
+  }
+
+  .fa-circle-disabled{
+    color: grey;
+  }
+
+  .fa-circle-pending{
+    color: #F5A623;
+  }
+
+  .fa-check-circle{
+      margin-right: 5px !important;
+      font-size: 16px !important;
+  }
+  
+    .fa-angle-down.btn-other{
+      top: 46px  !important;
+      right: 25px  !important;
+        color: #D2D7DA  !important;
+      font-size: 25px  !important;
+ 
+  }
+    .fa-angle-down.modal-drop-down{
+      top: 16px  !important;
+      right: 25px  !important;
+        color: #D2D7DA  !important;
+      font-size: 25px  !important;
+ 
+  }
+ 
+
+  .fa-check-circle.verified{
+    color: #40DA91 !important  
+  }
+
+  .fa-check-circle.non-verified{
+    // color: #40DA91 !important  
+  }
+
+  .icon-exit:before {
+    content: "\ea14";
+    color: #9b9b9b;
+  }

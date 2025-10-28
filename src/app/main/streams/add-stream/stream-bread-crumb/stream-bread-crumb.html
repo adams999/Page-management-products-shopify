@@ -1,0 +1,8 @@
+<div class="bread-crumb row">
+  <div *ngFor="let crumb of breadCrumbData" class="col single-crumb mr-1  bg"
+    [ngClass]="crumb.selected == true? 'selected-bread-crumb':'custom-display'">
+    <span class="dot custom-dot number-center" [ngClass]="crumb.completed == true ? 'selected-dot number-center': ''"><span *ngIf="crumb.completed != true" >{{crumb.number}}</span>
+      <span *ngIf="crumb.completed == true"> <i class="fa fa-check number-center"></i></span> </span>
+    <div class="bread-name">{{crumb.breadCrumb}}</div>
+  </div>
+</div>

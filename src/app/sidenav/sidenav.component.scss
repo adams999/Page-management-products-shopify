@@ -1,0 +1,256 @@
+.sidenav {
+  height: 100%;
+  width: 230px;
+  position: fixed;
+  z-index: 446;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  border-right: solid 2px rgba(230, 231, 239, 0.473);
+  display: block;
+
+  .a-line-height {
+    font-weight: 400;
+    padding-top: 68px;
+    line-height: 38px;
+
+    img.icon {
+      height: 20px;
+      width: 20px;
+      vertical-align: baseline;
+      margin-right: 22px;
+      top: 4px;
+      position: relative;
+    }
+  }
+
+  .closebtn {
+    display: none;
+  }
+}
+
+.hamburger {
+  display: none !important;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #354168;
+  display: block;
+  padding-left: 36px;
+  cursor: pointer;
+}
+
+.sidenav a:hover {
+  color: #5579f3;
+  background-color: #f1f3fa;
+  border-left: 4px solid#5579F3;
+  padding-left: 32px !important;
+}
+
+.sidenav a:focus {
+  color: #5579f3;
+  background-color: #f1f3fa;
+  border-left: 4px solid#5579F3;
+  padding-left: 32px !important;
+}
+
+.main {
+  margin-left: 230px;
+  /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .sidenav {
+    display: none;
+    top: 58px;
+    //  .closebtn{
+    //    display: initial
+    //  }
+  }
+
+  .open-nav {
+    display: block;
+  }
+
+  .hamburger {
+    display: block !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sidenav {
+    display: block !important;
+  }
+
+  .open-nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .abs_route {
+    bottom: 65px !important;
+  }
+}
+
+.simu-logo {
+  padding-left: 42px !important;
+}
+
+.multi-collapse {
+  a {
+    padding-left: 95px !important;
+
+    &:hover {
+      padding-left: 95px !important;
+      color: #5579f3;
+      background-color: #f1f3fa;
+      border-left: none !important;
+    }
+
+    &:focus {
+      padding-left: 95px !important;
+      color: #5579f3;
+      background-color: #f1f3fa;
+      border-left: none !important;
+    }
+  }
+}
+
+.icon-down {
+  i {
+    font-size: 11px;
+    margin-left: 2px;
+  }
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.sidenav {
+  a.closebtn {
+    &:hover {
+      padding-left: 0 !important;
+      color: #354168;
+      background-color: transparent !important;
+      border-left: none !important;
+      outline: none !important;
+    }
+
+    &:focus {
+      padding-left: 0 !important;
+      color: #354168;
+      background-color: transparent;
+      border-left: none !important;
+      outline: none !important;
+    }
+  }
+}
+
+.open-nav {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+button.hamburger {
+  background: white;
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+img.circle {
+  border-radius: 50px !important;
+  height: 22px;
+  width: 22px;
+  position: relative;
+  bottom: 1px;
+}
+
+.abs_route {
+  position: absolute;
+  bottom: 10px;
+  // padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #354168;
+  display: block;
+  // padding-left: 42px;
+  cursor: pointer;
+  // padding-left: 32px !important;
+}
+
+.abs_route select {
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.color-darkblue {
+  color: #354168;
+}
+
+.img-container {
+  padding-left: 20px;
+}
+
+.name-sec {
+  padding-left: 8px !important;
+  padding-right: 20px !important;
+}
+
+.dropdown.settings {
+  width: 100%;
+  border: 0 !important;
+  background: transparent !important;
+  line-height: 1;
+  .fa {
+    margin-top: 2px !important;
+    font-size: 15px !important;
+  }
+  .title-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    color: #354168;
+    border: 0 !important;
+    padding-left: 4px !important;
+    font-size: 14px;
+    &:focus {
+      outline: none !important;
+      border-color: none !important;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+  .dropdown-item {
+    font-size: 14px !important;
+  }
+}
+.leads-form-icon {
+  margin-right: 22px;
+  font-size: 23px;
+  color: #c6cdd39e;
+}

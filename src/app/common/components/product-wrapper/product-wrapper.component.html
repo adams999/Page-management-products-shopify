@@ -1,0 +1,56 @@
+<div class="box" id="products-wrapper">
+  <div class="buttons-nav">
+  </div>
+  <div class="form-data col-12 card-data" *ngIf="streamDetails.leadsForm">
+    <div class="row" *ngIf="isFormDisplay && !isFormHide">
+      <div class="col-9">
+        <span class="form-name">{{streamDetails.leadsForm.displayName}}</span>
+      </div>
+      <div class="col-3"> <button type="button" class="delete-product" (click)="displayHideForm(false)"><img
+            src="assets/icons-simustream/close.svg" alt=""></button></div>
+      <div class="col-12">
+        <div class="form-group form-sample-display"
+          *ngFor="let field of streamDetails.leadsForm.leadsFields">
+          <label for="">{{field.label}}</label>
+          <input type="text" class="form-control mt-1" id="formName" name="formName"
+            placeholder="{{field.label}}" readonly>
+        </div>
+        <div class="button-container">
+          <button class="btn btn-primary w-100" [disabled]=true>Submit</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isFormDisplay && isFormHide">
+        <div class="row card-p hide-form-container">
+          <div class="col-md-12">
+            <div class="well row well-sm">
+            <div class="col-6"> <p>Lead Form</p></div>
+            <div class="col-6"><button class="btn btn-light" (click)="displayHideForm(true)">Show</button></div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div *ngIf="!isFormDisplay || isFormHide">
+    <div class="card-data" *ngFor='let item of listOfProductsShowing' [hidden]="item.isTimeOut==true">
+      <div class="row card-p" id="{{item.id}}">
+        <div class="col-md-12">
+          <div class="well well-sm">
+            <div class="row">
+              <div class="col pr-0">
+                <img src="{{item?.images[0]?.src || item?.imageUrl}}" height="80px" width="80px" alt=""
+                  class="img-rounded img-responsive" />
+              </div>
+              <div class="col pl-0 ml-1 product-text mt-3">
+                <div class=" ellipsis">
+                  <p class="w-bold mb-1">{{item.title }}</p>
+                </div>
+                <p class="mb-0 w-bold">Price: <b>${{item.variants[0].price}} </b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

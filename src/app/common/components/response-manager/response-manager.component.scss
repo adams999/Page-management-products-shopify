@@ -1,0 +1,30 @@
+p {
+  margin-bottom: 0 !important;
+
+  .alert,
+  .alert-dismissible {
+    margin-bottom: 0 !important;
+    text-align: left !important
+  }
+
+}
+
+.light {
+  color: #354168;
+  padding-left: 33px !important;
+  .button-verify {
+    bottom: 15px;
+    position: relative;
+  }
+  .warning{
+    p{
+      font-family: sofia-pro-medium, sans-serif !important;
+      font-weight: 100 !important;
+
+    }
+  }
+}
+
+.message{
+  font-size: 14px;
+}

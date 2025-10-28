@@ -1,0 +1,32 @@
+.content-right {
+  float: right;
+}
+.height-ch {
+  height: 390px;
+  overflow-y: auto;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  background: #ffffff;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(223, 224, 230, 0.473);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(226, 224, 224);
+}
+.description-text {
+  padding: 13px;
+}
+
+

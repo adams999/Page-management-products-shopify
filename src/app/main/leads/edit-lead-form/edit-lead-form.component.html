@@ -1,0 +1,26 @@
+<div class="container-fluid container-edit-lead-form">
+  <div class="row">
+    <div class="col-md-12 bg p-0 pl-3 border-style shadow-box">
+      <div class="row description-text pl-0 pt-4 pb-2 grid-table">
+        <div class="col pl-0 head-text">Edit Lead Generation Form</div>
+      </div>
+
+      <div class="height-ch">
+        <app-create-form [defaultInputFields]="defaultInputFields" [customInputFields]="customInputFields"
+          (customInputFieldsEmitter)="editLeadsForm($event)" [formDetails]="leadForm" [selectedSubmissionMethod]="selectedSubmissionMethod"></app-create-form>
+      </div>
+
+    </div>
+    <div class="col-md-12 mt-3 pl-0 pr-0">
+      <div class="mb-3">
+        <span class="text-danger">{{errorMessage}}</span>
+      </div>
+      <button class="btn btn-primary btn-w-100 content-right" (click)="createForm.submitFields()"
+        [disabled]="isSubmit">Edit Lead Form<img class="ml-3" src="assets/icons-simustream/Arrow_Right.svg"
+          alt=""></button>
+      <button class="btn btn-gery-transparent  btn-w-100 btn-cancel" (click)="cancelFormCreation()"
+        [disabled]="isSubmit">Cancel</button>
+    </div>
+  </div>
+</div>
+

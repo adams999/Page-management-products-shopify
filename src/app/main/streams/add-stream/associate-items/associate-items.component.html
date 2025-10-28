@@ -1,0 +1,305 @@
+<div class="p-5 container-fluid">
+  <div *ngIf="streamDetails && streamDetails._id" class="edit-header">
+    <h5>{{ header }}</h5>
+  </div>
+  <div class="mb-3" *ngIf="timeIncorrect">
+    <span class="text-danger">{{ errorMessages.validTime }}</span>
+  </div>
+  <div class="p-0 col-12">
+    <div *ngIf="streamDetails && !streamDetails._id" class="content-center row">
+      <div class="text-center col-md-12">
+        <create-stream-header-app></create-stream-header-app>
+      </div>
+      <div class="col-md-10 crumb-head col-sm-12">
+        <stream-bread-crumb-app
+          [crumbNumber]="breadCrumbNumber"
+        ></stream-bread-crumb-app>
+      </div>
+    </div>
+    <div class="p-0 col-12">
+      <div class="row display-table w-100">
+        <div
+          *ngIf="streamDetails._id"
+          class="pl-0 col-md-7 video-column full-width col-sm-12 edit-video-container"
+        >
+          <div class="p-4 bg h-100 border-style shadow-box">
+            <div
+              *ngIf="!streamDetails?.isCustom"
+              id="newPlayer"
+              class="e2e-iframe-untrusted-src player-size"
+              style="width: 100%"
+            ></div>
+            <!-- <iframe class="e2e-iframe-untrusted-src" width="100%" height="290" id="ytplayer" [src]="videoId"></iframe> -->
+
+            <!-- CUSTOM PLAYER - LIVE -->
+            <div
+              *ngIf="streamDetails?.isCustom"
+              class="pl-0 pr-0 text-center col-12 custom-player"
+            >
+              <img
+                class="ru-l"
+                src="/assets/images/above-footer-logo/ryoulive.png"
+                alt=""
+              />
+              <div class="form-group">
+                <label for=""></label>
+                <input
+                  type="text"
+                  class="form-control stream-input"
+                  [(ngModel)]="streamDetails.customVideoUrl"
+                  id="video"
+                  name="video"
+                  placeholder="Video url"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="streamDetails && !streamDetails?.isCustom"
+              class="text-center col"
+            >
+              <button class="mt-2 mb-3 btn btn-sign-in" (click)="updateVideo()">
+                Update Stream Video
+              </button>
+            </div>
+            <span *ngIf="streamDetails">
+              <div class="mb-0 form-group">
+                <label for="">Stream Name</label>
+                <input
+                  type="text"
+                  class="mt-1 form-control stream-input"
+                  id="streamName"
+                  [(ngModel)]="streamDetails.name"
+                  name="streamName"
+                  placeholder=""
+                />
+              </div>
+              <div class="mt-2 form-group">
+                <label for="">Description</label>
+                <textarea
+                  class="mt-1 form-control"
+                  id="description"
+                  rows="3"
+                  [(ngModel)]="streamDetails.description"
+                  name="description"
+                  placeholder="Start typing..."
+                ></textarea>
+              </div>
+            </span>
+            <app-product-wrapper
+              class="edit-stream"
+              [streamDetails]="streamDetails"
+              [isFormDisplay]="isFormDisplay"
+              [listOfProductsShowing]="listOfProductsShowing"
+            ></app-product-wrapper>
+          </div>
+        </div>
+        <div class="pl-0 pr-0 col-md-5 products-column col-sm-12 full-width">
+          <div class="pl-0 pr-0 bg border-style shadow-box">
+            <div
+              [hidden]="
+                (!streamDetails.products.length && !streamDetails.leadsForm) ||
+                streamDetails._id
+              "
+              class="pt-4 ml-2 description-text"
+            >
+              Choose time in and time out
+            </div>
+            <div
+              [hidden]="
+                streamDetails.products.length || streamDetails.leadsForm
+              "
+              class="pt-4 ml-2 description-text text-danger"
+            >
+              *{{ errorMessages.streamProduct }}
+            </div>
+            <div
+              class="pl-1 m-0 mt-2 row"
+              [ngClass]="!streamDetails._id ? 'height-ch' : 'height-ch-edit'"
+            >
+              <div class="ml-2 mr-2 w-100">
+                <span *ngIf="streamDetails.leadsForm">
+                  <app-associate-form
+                    [streamDetails]="streamDetails"
+                    (updatedStreamEmitter)="
+                      getUpdatedStreamEmitter($event, content)
+                    "
+                    (errroEmiiter)="getErrorEmitter($event)"
+                  >
+                  </app-associate-form>
+                </span>
+                <span *ngIf="streamDetails.products.length>0">
+                  <associate-products-app
+                    [streamDetails]="streamDetails"
+                    (updatedStreamEmitter)="
+                      getUpdatedStreamEmitter($event, content)
+                    "
+                    (errroEmiiter)="getErrorEmitter($event)"
+                  >
+                  </associate-products-app>
+                </span>
+              </div>
+            </div>
+            <button type="submit" class="add-item" (click)="addMoreProducts()">
+              <img src="assets/icons-simustream/plusCircle.svg" alt="" />
+            </button>
+          </div>
+        </div>
+        <div
+          *ngIf="!streamDetails._id"
+          class="pr-0 col-md-7 video-column full-width col-sm-12"
+        >
+          <div class="p-4 bg h-100 border-style shadow-box">
+            <div class="video-column-content">
+              <!-- <div id="ytplayer"> </div> -->
+              <div
+                id="newPlayer"
+                class="e2e-iframe-untrusted-src player-size"
+                style="width: 100%"
+              ></div>
+              <!-- <iframe class="e2e-iframe-untrusted-src" width="100%" height="290" id="ytplayer" [src]="videoId"></iframe> -->
+              <div class="mt-4 title-stream">
+                <p>{{ streamDetails.name }}</p>
+              </div>
+              <div class="mt-3 color-description">
+                <strong>
+                  <p>{{ streamDetails.description }}</p>
+                </strong>
+              </div>
+              <app-product-wrapper
+                [streamDetails]="streamDetails"
+                [isFormDisplay]="isFormDisplay"
+                [listOfProductsShowing]="listOfProductsShowing"
+              >
+              </app-product-wrapper>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mb-3 col-md-12 page-bottom">
+  <!-- <div class="mb-3" *ngIf="timeIncorrect">
+    <span class="text-danger">{{ errorMessages.validTime }}</span>
+  </div> -->
+  <button
+    class="btn btn-primary content-right btn-w-100"
+    [disabled]="
+      (!streamDetails.leadsForm && !streamDetails.products.length) ||
+      streamDetails.timeError
+    "
+    (click)="publishStream()"
+  >
+    {{ publishButton }}
+    <img class="ml-3" src="assets/icons-simustream/Arrow_Right.svg" alt="" />
+  </button>
+  <button
+    class="btn btn-gery-transparent content-left btn-w-100 btn-cancel"
+    [disabled]="disbaleButton"
+    (click)="cancelStream()"
+  >
+    Cancel
+  </button>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <img src="assets/icons-simustream/cross.svg" alt="" />
+    </button>
+  </div>
+  <div class="modal-body">
+    <span class="check">
+      <img src="assets/icons-simustream/checkCircle.svg" alt=""
+    /></span>
+    <h4 class="mt-4 mb-5 modal-title" id="modal-basic-title">
+      Congratulations! You have published the stream!
+    </h4>
+    <!-- <p class="mt-4 modal-title" id="modal-basic-title">Only 5 Streams till super account. Keep Going!</p> -->
+    <!-- <div class="slider">
+<img class="s-node" src="assets/icons-simustream/progressBarNode.svg" alt="">
+<img class="s-slider" src="assets/icons-simustream/progressBarSlider.svg" alt="">
+<img class="s-back" src="assets/icons-simustream/progressBarBack.svg" alt="">
+</div> -->
+    <div *ngIf="streamDetails.isCustom">
+      <p class="mt-4 plain" id="modal-basic-title">Stream id: {{ streamId }}</p>
+    </div>
+    <div *ngIf="!streamDetails.isCustom">
+      <p class="mt-4 plain" id="modal-basic-title">
+        Share via your social media:
+      </p>
+      <span class="media">
+        <img
+          class="mr-1 share-icon"
+          (click)="share('facebook')"
+          src="assets/icons-simustream/facebook.svg"
+          alt=""
+        />
+        <img
+          class="ml-1 share-icon"
+          (click)="share('twitter')"
+          src="assets/icons-simustream/twitter.svg"
+          alt=""
+        />
+        <img
+          class="ml-1 share-icon"
+          (click)="share('linkedin')"
+          src="assets/icons-simustream/linkedin.svg"
+          alt=""
+        />
+      </span>
+      <form>
+        <div class="mt-4 text-left row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="">Link</label>
+              <div class="input-group tooltip-hover">
+                <img src="assets/icons-simustream/linkIcon.svg" alt="" />
+                <span class="tooltiptext" id="myTooltip"
+                  >Copy to clipboard</span
+                >
+                <input
+                  [(ngModel)]="linkStream"
+                  (click)="copyInputMessage(userinput)"
+                  #userinput
+                  name="link"
+                  id="link"
+                  class="form-control link-input copy-clipboard"
+                  ng-mouseleave="outFunc()"
+                  placeholder="Stream Link"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="">Embeded Code</label>
+              <div class="input-group tooltip-hover">
+                <span class="tooltiptext" id="myTooltip1"
+                  >Copy to clipboard</span
+                >
+                <input
+                  [(ngModel)]="iframeText"
+                  (click)="copyInputMessage1(userinput1)"
+                  #userinput1
+                  name="iframetext"
+                  id="iframetext"
+                  class="form-control copy-clipboard"
+                  ng-mouseleave="outFunc()"
+                  placeholder="iframe"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

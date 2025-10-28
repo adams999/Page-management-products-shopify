@@ -1,0 +1,247 @@
+<div class="container-fluid pb-0">
+  <div class="row">
+    <div class="col-md-5 stream-header col-sm-12">
+      <h4>Leads</h4>
+      <!-- <span class="description-text"> Lorem ipsum dolor sit amet, consectetur tempor. </span> -->
+    </div>
+    <div class="col-md-7 stream-statistics col-sm-12">
+    </div>
+  </div>
+  <div class="list-streams-main row mt-4">
+    <div class="col-md-12">
+      <div class=" bg pt-3 pl-3 p-0 border-style shadow-box">
+        <div class="row m-0  pb-3 grid-table">
+          <div class="col-md-2 col-sm-12 pl-0 stream-q">
+            <h6>{{leadsForms.length}} Lead {{header}}{{leadsForms.length > 1  ?  's': ''}}
+            </h6>
+          </div>
+          <div class="col-md-10 active-list-filters col-12 col-sm-12 p-0 text-right">
+            <form>
+              <div class="form-row float-right">
+                <div class="form-group search-form filter-margin-right mt-1">
+                  <div class="form-group mb-0 has-feedback">
+                    <label for="search" class="sr-only"></label>
+                    <input type="text" class="form-control" name="search" id="search" (keyup)="search($event)"
+                      (blur)="filterKeys.search=''" placeholder="">
+                    <span class=" form-control-feedback">
+                      <img src="/assets/icons-simustream/search.svg" alt="">
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group filter-form mb-0">
+                  <button class="btn btn-empty refresh mr-0 mt-1" [disabled]="disableButtons.refreshList"
+                    (click)="refreshList()">
+                    <img class="" src="/assets/icons-simustream/refresh.svg" alt="">
+                  </button>
+                  <span class="dropdown filter mr-3">
+                    <span class="description-text sort">Sort By:</span>
+                    <button class="btn btn-secondary dropdown-toggle sortby" type="button" id="dropdownMenu2"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{currentFilter}}
+                      <img class="mt-2" src="/assets/icons-simustream/Arrow-up-down.svg" alt="">
+                    </button>
+                    <div class="dropdown-menu filter-menu" aria-labelledby="dropdownMenu2">
+                      <button class="dropdown-item" type="button"
+                        (click)="filterFunc('Created', 'createdAt')">Created</button>
+                      <!-- <button class="dropdown-item" type="button" (click)="filterFunc('Total Fields', 'leadsFields')">Total
+                        Fields</button> -->
+                    </div>
+                  </span>
+                  <div class="btn-group" role="toolbar" aria-label="Basic example">
+                    <button type="checkbox" class="btn btn-multiple btn-left pt-1" (click)="switchDisplay('list')">
+                      <img *ngIf="displayStyle== 'grid'" src="/assets/icons-simustream/list-view.svg" alt="">
+                      <img *ngIf="displayStyle == 'list'" src="/assets/icons-simustream/list-view-active.svg" alt="">
+                    </button>
+                    <button type="checkbox" (click)="switchDisplay('grid')" class="btn btn-multiple btn-right pt-1">
+                      <img *ngIf="displayStyle== 'list'" src="/assets/icons-simustream/grid-view.svg" alt="">
+                      <img *ngIf="displayStyle == 'grid'" src="/assets/icons-simustream/grid-view-active.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="height-ch p-0 col-sm-12" (scroll)="onElementScroll($event)" id="client">
+          <div class="loader-center" [hidden]="!errorMessages.noLeadsFound">
+            {{errorMessages.noLeadsFound}}
+          </div>
+          <div *ngIf="searchResultMessage !='' && notSearchResult" class="col-md-12">
+            <p> {{SearchResultMessage}}</p>
+          </div>
+          <table *ngIf="displayStyle === 'list'" class="table bg" id="grid">
+            <thead>
+              <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of leadsForms ; let i = index">
+                <!-- <td style="width: 7%" class="img-scene pl-0">{{i+1}}</td> -->
+                <td class="pl-0" style="width: 60%">
+                  <div><span class="text"> {{item.name}}</span></div>
+
+                </td>
+                <td><span class="text"> {{item.leadsFields.length ? item.leadsFields.length : 0}} </span><br> <span
+                    class="description-text font-regular">Fields</span>
+                </td>
+                <td>
+                  <div class=""> <span
+                      [ngClass]="item.isActive ? 'badge badge-success': 'badge badge-light'">{{item.isActive? 'Active' : 'In-Active' }}</span>
+                    <div>
+                      <span class="description-text font-regular">{{calculateDuration(item.createdAt)}}
+                        {{now ? 'ago':''}}</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right p-0 acc">
+                  <div class="dropdown ">
+                    <button class="btn btn-more " type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <img src="/assets/More.svg" alt="more">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right ">
+                      <button class="dropdown-item" (click)="viewForm(item, content)">View</button>
+                      <button class="dropdown-item" [routerLink]="['/edit-lead-form',item._id]">Edit</button>
+                      <button *ngIf="formType=== 'custom'" class="dropdown-item" (click)="createTemplate(item)">Save As Template</button>
+                      <div class="dropdown-divider"></div>
+                      <button class="dropdown-item"
+                        (click)="changeStatus(item)">{{item.isActive ? 'In-Active' : 'Active'}}</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="displayStyle === 'grid'" class="row ml-2 mt-3 mr-2" id="grid">
+            <div class="col-3 pl-0" *ngFor="let item of leadsForms ; let i = index">
+              <div class="card lead mt-3" id="card-card">
+                <div class="card-body">
+                  <p class="card-title">{{item.name}}</p>
+                  <h6 class="card-subtitle mb-2 text-muted">Fields# {{item.leadsFields.length}}</h6>
+                  <p class="card-text"></p>
+                  <!-- <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> -->
+                  <div>
+                    <span
+                      [ngClass]="item.isActive ? 'badge badge-success': 'badge badge-light'">{{item.isActive ? 'Active' : 'In-Active' }}</span>
+                  </div>
+                  <div class="mt-1 row">
+                    <div class="col-9 pr-0">
+                      <small class="text-muted">{{calculateDuration(item.createdAt)}} {{now ? 'ago':''}}</small>
+                    </div>
+                    <div class="col-3 text-right pr-0">
+                      <div class="dropdown ">
+                        <button class="btn btn-more rotate pl-0 pb-0" type="button" id="dropdownMenuButton"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="/assets/More.svg" alt="more">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right ">
+                          <button class="dropdown-item" (click)="viewForm(item, content)">View</button>
+                          <button class="dropdown-item" [routerLink]="['/edit-lead-form',item._id]">Edit</button>
+                          <button *ngIf="formType=== 'custom'" class="dropdown-item" (click)="createTemplate(item)">Save As Template</button>
+                          <div class="dropdown-divider"></div>
+                          <button class="dropdown-item"
+                            (click)="changeStatus(item)">{{item.isActive ? 'In-Active' : 'Active'}}</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-2 m-0 mt-2 create-stream-bottom">
+        <button class="btn btn-primary" [routerLink]="['/choose-mode']">Create Leads Form</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h3 class="mb-0">Lead Form</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <img src="assets/icons-simustream/cross.svg" alt="">
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row pl-3 pr-3">
+      <div class="col-12">
+        <span class="description-text pl-0">Form Details</span>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Name:</label>
+          <p>{{modalData.title}}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Display Name:</label>
+          <p>{{modalData.title2}}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group modal-group">
+          <label for="">Description:</label>
+          <p>{{modalData.description || 'None'}}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <span class="description-text pl-0">Thank You Page Details</span>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Title:</label>
+          <p>{{modalData.formSubmissionModal.title }}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Description:</label>
+          <p>{{modalData.formSubmissionModal.description  }}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <span class="description-text pl-0">Form Submission Details</span>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Email:</label>
+          <p>{{modalData.formSubmissionDetails.email || 'None'}}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">End Point:</label>
+          <p>{{modalData.formSubmissionDetails.endPoint || 'None' }}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <span class="description-text pl-0">Form Fields</span>
+        <table class="table bg" id="grid">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of modalData.fields ; let i = index">
+              <td style="width: 7%" class="img-scene pl-0"><span class="text">{{i+1}}.</span></td>
+              <td class="pl-0" style="width: 40%">
+                <span class="text"> {{item.label}}</span>
+              </td>
+              <td class="" style="width: 15%">
+                <span class="text"> {{item.validation.isRequired ? 'Required' : 'Not Required'}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-template>

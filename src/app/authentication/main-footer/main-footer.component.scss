@@ -1,0 +1,179 @@
+.home-last-footer {
+  padding: 5% 5%;
+
+  a {
+    color: #354168;
+    font-size: 20px;
+    // font-weight: 600;
+  }
+}
+
+.copyright {
+  h5 {
+    color: #d0d6db;
+  }
+}
+
+.footer-logo {
+  width: 300px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.footer-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.footer-last-links .list-inline {
+  padding-top: 14px;
+}
+
+.footer-last-links ul {
+  float: right;
+  margin-bottom: 0;
+}
+
+.list-inline-item {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  a {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline
+    }
+  }
+
+}
+
+.copyright {
+  padding-top: 1rem;
+  padding-left: 28px;
+}
+
+.copyright h5 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.last-two-links {
+  padding-top: 0px;
+}
+
+.home-last-footer a {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer-logo {
+    width: 200px;
+    height: 40px;
+    overflow: hidden;
+  }
+
+  .copyright {
+    padding-top: 25px !important;
+    padding-left: 5px !important;
+  }
+
+  .copyright h5 {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 907px) {
+  .home-last-footer a {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  .about-div-1 *,
+  .about-div-2 *,
+  .about-div-3 * {
+    text-align: left;
+  }
+
+  .footer-logo {
+    margin-left: 8%;
+    margin-right: 0;
+    margin-bottom: 0px;
+    width: 145px;
+    height: 60px;
+  }
+
+  .footer-last-links {
+    padding-left: 40px !important;
+  }
+
+  .footer-last-links ul {
+    float: initial;
+  }
+
+  .last-two-links {
+    order: 1 !important;
+  }
+
+  .copyright {
+    padding-left: 44px !important;
+    order: 2 !important;
+  }
+
+  .home-last-footer {
+    padding: 5% 0;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .list-inline-item {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .copyright {
+    padding-left: 36px !important;
+  }
+
+  .footer-last-links {
+    padding-left: 30px !important;
+  }
+}
+
+@media only screen and (max-width: 488px) {
+  .home-last-footer {
+    a {
+      font-size: 14px;
+    }
+  }
+
+  .home-last-footer {
+    padding: 5% 0;
+  }
+
+  .list-inline {
+    margin-bottom: 0 !important;
+  }
+
+  .copyright h5 {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .list-inline-item {
+    margin-right: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .home-last-footer {
+    a {
+      font-size: 12px;
+    }
+  }
+}

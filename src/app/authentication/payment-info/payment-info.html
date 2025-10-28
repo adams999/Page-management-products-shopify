@@ -1,0 +1,60 @@
+<div class="sign-up-component">
+  <div class="sign-up-form-section row m-0 background-page">
+      <div class="col-md-12 logo-head">
+          <a class="navbar-brand logo" [routerLink]="['/']">
+            <img class="brand-logo logomobile" src="/assets/icons-simustream/blue-simu-logo.svg" alt="">
+          </a>
+        </div>
+        <img src="/assets/images/latest/pricing element 1.svg" class="pricingsideimgx">
+        <img src="/assets/images/latest/faqs element 2.svg" class="pricingsideimgy">
+        <img src="/assets/images/latest/contact element.svg" class="pricingsideimg3">
+    <div class="col-md-4 bg border-style shadow-box sign-box">
+      <div class="header-section pb-2">
+        <h1>Payment Info</h1>
+        <h5>Credit Card Details</h5>
+      </div>
+      <!-- <form ngNativeValidate (ngSubmit)="signUp()" name="sign-up">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="text" minlength="12" maxlength="19" class="form-control mt-2" [(ngModel)]="card.cardNumber"
+                id="cardNumber" pattern="\d*" name="cardNumber" placeholder="Card Number" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control mt-2" [(ngModel)]="card.expiryDate" id="expiryDate"
+                name="expiryDate" pattern="\d{1,2}/\d{2,9}" placeholder="MM / YY" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" minlength="3" maxlength="4" class="form-control mt-2" [(ngModel)]="card.cvv" id="cvv"
+                name="cvv" placeholder="CVV" required>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="mt-2">
+              <response-manager></response-manager>
+              <button type="submit" class="btn btn-sign-in mt-2">Proceed</button>
+            </div>
+          </div>
+        </div>
+      </form> -->
+      <form novalidate (ngSubmit)="getPaymentToken()">
+        <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+          <div class="error-handle" [hidden]="!errorMessage.cardResponse">
+            <p class="text-red">
+              *{{errorMessage.cardResponse}}
+            </p>
+          </div>
+        <button type="submit" [disabled]="buttonDisable" class="btn btn-sign-in mt-2">Proceed</button>
+      </form>
+      <div class="go-back col-md-12">
+          <button class="btn btn-sign-in btn-w-100 go-back-button content-left" [routerLink]="['/sign-up']" [queryParams]="{ plan: user.selectedPlan, id: user.plan, fromInfo:'1'}"><img
+                 class="back-arrow" src="assets/icons-simustream/gobakc-blue-opposite-2px.png" alt=""></button>
+        </div>
+    </div>
+  </div>
+
+</div>

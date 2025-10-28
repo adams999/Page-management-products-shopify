@@ -1,0 +1,143 @@
+<main-header></main-header>
+<div class="upper-image">
+  <div class="main-heading">
+    <h1>
+      Couldn`t find what you were looking for?<br />
+      Have some suggestions?<br />
+      Want to just say hi?
+    </h1>
+    <h3 class="small-heading">We`re here for you.</h3>
+  </div>
+  <div class="contact-header-image">
+    <div class="contact-header-img-1">
+      <img src="assets/images/latest/contact element.svg" />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-7 contact-form-div">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="form-div shadow-box ">
+          <div class="contact-form">
+            <div class="form-heading">
+              <h6>Let us know how we can help you.</h6>
+            </div>
+          </div>
+          <form ngNativeValidate (ngSubmit)="submit()">
+            <div class="row form-inp">
+              <label class="text-light-black" for="">Subject</label>
+              <br />
+              <div class="select-wrapper">
+                <select #t (change)="subjectSelectChange(t.value)" class="form-control  ht-40" name="" id="">
+                  <option selected disabled value="General Inquiries"
+                    >General Inquiries</option
+                  >
+                  <option value="Sales">Sales</option>
+                  <option value="Support">Support</option>
+                </select>
+                <img src="assets/images/latest/dropdown.svg" alt="" />
+              </div>
+            </div>
+            <div class="row form-inp">
+              <label for="" class="form-label text-light-black">
+                Name
+              </label>
+              <br />
+              <input
+                class="form-control form-input w-100"
+                type="text"
+                name="name"
+                pattern="[a-zA-Z ]*"
+                [(ngModel)]="contactInfo.contactName"
+                required
+              />
+            </div>
+            <div class="row form-inp">
+              <label for="" class="form-label text-light-black">
+                Work Email
+              </label>
+              <br />
+              <input
+                class="form-control form-input w-100"
+                type="text"
+                name="name"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                [(ngModel)]="contactInfo.contactEmail"
+                required
+              />
+            </div>
+            <div class="row form-inp">
+              <label for="" class="form-label text-light-black">
+                Message
+              </label>
+              <br />
+              <textarea
+                id="subject"
+                class="form-control message-inp form-input w-100"
+                name="subject"
+                style="height:200px"
+                [(ngModel)]="contactInfo.contactMessage"
+                required
+              ></textarea>
+            </div>
+            <div class="row form-inp">
+              <button type="submit" class="btn btn-primary submit-btn">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+  <div class="right-div col-md-5">
+    <div class="col-md p-0">
+      <div class="row">
+        <img src="assets/images/support-icon.svg" class="img-icon" alt="" />
+        <h4 class="icon-heading text-light-black">Customer Support <br /></h4>
+      </div>
+      <p class="p-tag text-light-black">
+        For any product or technical questions, reach us at
+        <a href="mailto: support@simustream.com">support@simustream.com<span class="text-light-black">.</span></a> Or
+        check out our
+        <a href="https://intercom.help/simustream">FAQs page.</a>
+      </p>
+    </div>
+    <div class="col-md p-0">
+      <div class="row">
+        <img src="assets/images/sales-icon.svg" class="img-icon" alt="" />
+        <h4 class="icon-heading text-light-black">Sales <br /></h4>
+      </div>
+      <p class="p-tag text-light-black">
+        Let us show you what Simustream can do for you. <br />
+        Get in touch at<a href="mailto: sales@simustream.com">
+          sales@simustream.com<span class="text-light-black">.</span></a
+        >
+      </p>
+    </div>
+    <div class="col-md p-0">
+      <div class="row">
+        <img src="assets/images/followus-icon.svg" class="img-icon" alt="" />
+        <h4 class="icon-heading">Follow us: <br /></h4>
+      </div>
+      <p class="p-tag">
+        <a href="https://www.facebook.com/rodeoathletes" target="_blank"
+          ><img src="assets/images/facebook.svg" class="social-icon" alt=""
+        /></a>
+        <a href="https://twitter.com/simustream" target="_blank"
+          ><img src="assets/images/twitter-logo.svg" class="social-icon" alt=""
+        /></a>
+        <a href="https://www.linkedin.com/company/19123883/" target="_blank"
+          ><img src="assets/images/linkedin-logo.svg" class="social-icon" alt=""
+        /></a>
+        <a href="https://www.instagram.com/simustream/" target="_blank"
+          ><img src="assets/images/instagram.svg" class="social-icon" alt=""
+        /></a>
+      </p>
+    </div>
+  </div>
+</div>
+<main-footer></main-footer>

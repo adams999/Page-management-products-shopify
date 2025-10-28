@@ -1,0 +1,40 @@
+<div class="col-md-12 pt-5 p-0">
+  <div class="analytics-card h-100 p-2 heading-card">
+      <div class="row pt-2">
+          <div class="col-md-5">
+              <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+                  <button class="btn btn-more mr-2" id="dropdownManual" ngbDropdownAnchor
+                      (focus)="myDrop.open()">{{selectedOptionForLineChart}}</button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                      <button *ngFor="let lineChartDropDownValue of lineChartAnalytics"
+                          (click)="changeSelectedOptionForLineChart(lineChartDropDownValue.heading)"
+                          ngbDropdownItem>{{lineChartDropDownValue.heading}}</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-7 text-right">
+              <div class="dropdown filter">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img class="mr-2" src="/assets/icons-simustream/calender-filter.svg" alt="">
+                      {{dayFilter}}
+                      <img class="ml-2" src="/assets/icons-simustream/Arrow-up-down.svg" alt="">
+                  </button>
+                  <div class="dropdown-menu filter-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button" (click)="applyDaysFilter('Last 7 days')">Last 7 days</button>
+                    <button class="dropdown-item" type="button" (click)="applyDaysFilter('Last 14 days')">Last 14 days</button>
+                    <button class="dropdown-item" type="button" (click)="applyDaysFilter('Last 30 days')">Last 30 days</button>
+                    <button class="dropdown-item" type="button" (click)="applyDaysFilter('Last 90 days')">Last 90 days</button>
+                    <button class="dropdown-item" type="button" (click)="applyDaysFilter('Last 180 days')">Last 180 days</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="col-md-12 card-height p-0">
+  <div class="analytics-card h-100 card-border">
+    <canvas id="barChart"></canvas>
+  </div>
+</div>

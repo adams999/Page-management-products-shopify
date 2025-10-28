@@ -1,0 +1,90 @@
+.content-right {
+  float: right;
+}
+
+.card {
+  cursor: pointer;
+  p {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    font-weight: 600;
+    color: #354168;
+  }
+  .card-title {
+    font-size: 18px;
+  }
+  .card-subtitle {
+    font-size: 15px;
+  }
+}
+.reverse-icon {
+  transform: scaleX(-1);
+}
+
+.view-button {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  font-size: 10px !important;
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  &:hover {
+    background-color: #5579f3 !important;
+    color: #fff !important;
+  }
+}
+
+.description-text {
+  padding: 13px;
+}
+
+.height-ch {
+  height: calc(100vh - 316px);
+  overflow-y: auto;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: #ffffff;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(223, 224, 230, 0.473);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(226, 224, 224);
+}
+
+.form-group {
+  label {
+    font-size: 15px !important;
+  }
+  p {
+    font-size: 14px !important;
+  }
+}
+.search-form .form-group span.form-control-feedback {
+  top: 3px !important;
+  right: 29px !important;
+}
+.search-form-row {
+  float: right;
+  .search-form {
+    margin-right: 17px;
+  }
+}
+.ellipsis {
+  width: 100% !important;
+}

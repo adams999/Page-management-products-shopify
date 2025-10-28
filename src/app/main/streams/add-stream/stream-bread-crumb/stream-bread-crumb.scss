@@ -1,0 +1,100 @@
+.breadcrumb {
+  list-style: none;
+  overflow: hidden;
+  padding: 0;
+  justify-content: center !important;
+  background-color: transparent;
+}
+
+.breadcrumb li {
+  float: left;
+}
+
+.breadcrumb li a {
+  color: #354168;
+  text-decoration: none;
+  padding: 10px 0 10px 55px;
+  background: brown;
+  /* fallback color */
+  background: white;
+  position: relative;
+  display: block;
+  float: left;
+}
+
+.breadcrumb li a:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 100%;
+  z-index: 2;
+}
+
+.breadcrumb li a:before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid #E6E7EF;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 1;
+}
+
+.breadcrumb li:first-child a {
+  padding-left: 10px;
+}
+
+.dot.custom-dot {
+  margin-right: 9px
+}
+
+.number-center {
+  position: relative;
+  top: 1px;
+}
+
+.custom-display {
+  display: -webkit-inline-box;
+  color: #354168;
+  border-radius: 2px !important;
+}
+.bread-name {
+  font-size: 14px;
+   top: 2px;
+  position: relative;
+}
+@media (max-width: 1200px) {
+  .dot {
+    height: 21px;
+    width: 21px;
+    font-size: 12px;
+  }
+  .dot.custom-dot {
+    margin-right: 8px
+  }
+  .bread-name {
+    font-size: 12px;
+     top: 4px;
+    position: relative;
+  }.custom-display {
+    padding-left: 6px;
+  }
+  .selected-bread-crumb{
+    padding-left: 10px;
+  }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Group 11</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Homepage-+-responsive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="faqs" transform="translate(-1038.000000, -1160.000000)">
+            <g id="Group-2" transform="translate(298.000000, 1159.000000)">
+                <g id="Group-11" transform="translate(755.000000, 16.000000) scale(1, -1) rotate(91.000000) translate(-755.000000, -16.000000) translate(740.000000, 1.000000)">
+                    <circle id="Oval" stroke="#C6CDD3" fill="#FFFFFF" cx="15" cy="15" r="14.5"></circle>
+                    <g id="noun_Arrow_2284442" transform="translate(14.500000, 14.750000) rotate(90.000000) translate(-14.500000, -14.750000) translate(8.500000, 10.750000)" fill="#5579F3">
+                        <g id="Group" transform="translate(0.000000, 0.119591)">
+                            <path d="M6.06120762,0.551806498 C5.87341377,0.556148205 5.69392723,0.629222723 5.55749217,0.756884623 L0.816551873,5.25689775 C0.515318774,5.54518519 0.506773204,6.02010209 0.797444167,6.31880139 C1.08811513,6.61750069 1.56841865,6.6273717 1.87139217,6.34087275 L6.08491232,2.3389215 L10.2984336,6.34087275 C10.6014071,6.6273717 11.0817106,6.61750069 11.3723816,6.31880139 C11.6630526,6.02010209 11.654507,5.54518519 11.3532739,5.25689775 L6.61233247,0.756884623 C6.46404628,0.617942481 6.26535011,0.544005988 6.06120762,0.551806498 Z" id="Path" transform="translate(6.084913, 3.550348) scale(1, -1) translate(-6.084913, -3.550348) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,23 @@
+table{
+    border-collapse: inherit !important;
+    border-spacing: 0;
+    padding: 13px !important;
+    td,th{
+        //  vertical-align: unset !important;
+        padding: 18px !important;
+        .top-set{
+          top: 21px !important;
+          position: relative !important;
+        }
+    }
+    td.text-right{
+      vertical-align: middle !important;
+    }
+}
+td.img-scene {
+    img {
+      width: 95px;
+      height: 95px;
+      object-fit: cover;
+    }
+  }

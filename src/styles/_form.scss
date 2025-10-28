@@ -1,0 +1,83 @@
+.form-group {
+  label {
+    font-size: 16px ;
+    margin-top: 10px;
+    font-weight: 600 ;
+    color: $dark-blue !important;
+  }
+
+  input.form-control {
+    padding: 10px !important;
+    height: 45px !important;
+    background-color: $fill-gray !important;
+    color: #354168 !important;
+    font-size: 15px !important;
+    border-color: #E6E7EF !important;
+    font-weight: 600;
+
+    &:focus {
+      outline: none !important;
+      border-color: #E6E7EF !important;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+
+  textarea.form-control {
+    padding: 10px !important;
+    height: 100px !important;
+    background-color: $fill-gray !important;
+    color: #354168 !important;
+    font-size: 15px;
+    border-color: #E6E7EF !important;
+    resize: none !important;
+    font-weight: 600;
+
+    &:focus {
+      outline: none !important;
+      border-color: #E6E7EF !important;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+
+  select {
+    height: 45px !important;
+    padding: 10px !important;
+    background-color: $fill-gray !important;
+    border-color: #E6E7EF !important;
+    font-size: 15px;
+    appearance: none !important;
+    font-weight: 600;
+
+    &:focus {
+      outline: none !important;
+      border-color: #E6E7EF !important;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+
+  .select-wrapper {
+
+    position: relative !important;
+
+    i {
+      position: absolute;
+      top: 18px;
+      right: 12px;
+      color: $gray;
+    }
+  }
+
+  select::after {
+    display: none !important;
+    content: "" !important;
+  }
+
+  select::before {
+    content: "" !important;
+    display: none !important;
+  }
+
+}

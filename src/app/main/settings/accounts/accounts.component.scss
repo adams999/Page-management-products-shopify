@@ -1,0 +1,65 @@
+
+/**
+ * @Author: andersson arellano
+ * @Date: 2021-08-05 20:18:55
+ * @Desc:
+ */
+
+ @media screen and (max-width: 780px) {
+  .make-center{
+    text-align:center !important;
+  }
+}
+
+ @media screen and (max-width: 1280px){
+  .default-card2 .col-md-7{
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center !important;
+  }
+  .default-card2 .col-md-5{
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center !important;
+  }
+}
+
+.default-card2 {
+  height: 100%;
+}
+
+.shopify_icon{
+  max-height:52px !important;
+  max-width: 60px !important;
+  height:100%;
+  width: 100%;
+  margin-top: 9px;
+  margin-bottom: 9px;
+  // opacity:0.25;
+}
+.youtube_icon{
+  max-width:70px !important;
+  max-height: 70px !important;
+}
+
+.colorbg{
+  background-color:#F8F9FB !important;
+}
+
+.profile-form {
+  margin-top: 25px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 28px;
+  padding-right: 28px;
+
+  .form-head {
+    margin-top: 20px;
+  }
+
+  .form-base {}
+}
+
+.btn-opacity{
+  opacity: 90%;
+}

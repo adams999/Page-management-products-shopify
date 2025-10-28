@@ -1,0 +1,166 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5 stream-header col-sm-12">
+      <h4>Leads</h4>
+      <!-- <span class="description-text"> Lorem ipsum dolor sit amet, consectetur tempor. </span> -->
+    </div>
+    <div class="col-md-7 stream-statistics col-sm-12">
+    </div>
+  </div>
+  <div class="list-streams-main row mt-4">
+    <div class="col-md-12">
+      <div class=" bg pt-3 pl-3 p-0 border-style shadow-box">
+        <div class="row m-0 grid-table">
+          <div class="col-md-2 col-sm-12 pl-0 stream-q">
+            <h6>{{leadsForms.length}} {{leadsForms.length > 1 || leadsForms.length == 0 ? 'Leads Templates': 'Leads Template'}}
+            </h6>
+          </div>
+          <div class="col-md-10 active-list-filters col-12 col-sm-12 p-0 text-right">
+            <form>
+              <div class="form-row float-right">
+                <div class="form-group search-form filter-margin-right mt-1">
+                  <div class="form-group mb-0 has-feedback">
+                    <label for="search" class="sr-only"></label>
+                    <input type="text" class="form-control" name="search" id="search" (keyup)="search($event)"
+                      (blur)="filterKeys.search=''" placeholder="">
+                    <span class=" form-control-feedback">
+                      <img src="/assets/icons-simustream/search.svg" alt="">
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group filter-form mb-0">
+                  <button class="btn btn-empty refresh mr-0 mt-1" [disabled]="disableButtons.refreshList"
+                    (click)="refreshList()">
+                    <img class="" src="/assets/icons-simustream/refresh.svg" alt="">
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="height-ch p-0 col-sm-12" (scroll)="onElementScroll($event)" id="client">
+          <div class="loader-center" [hidden]="!errorMessages.noLeadsFound">
+            {{errorMessages.noLeadsFound}}
+          </div>
+          <div *ngIf="searchResultMessage !='' && notSearchResult" class="col-md-12">
+            <p> {{SearchResultMessage}}</p>
+          </div>
+          <div class="row ml-2 mt-3 mr-2 mb-3" id="grid">
+            <div class="col-3 pl-0" *ngFor="let item of leadsForms ; let i = index">
+              <div class="card mt-3" (click)="selectTemplateForm(item)" [ngClass]="item.isSelected?'card-selected':''">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="card-body pr-0">
+                      <p class="card-title">{{item.name}}</p>
+                      <h6 class="card-subtitle mb-2 text-muted">Fields# {{item.leadsFields.length}}</h6>
+                    </div>
+                  </div>
+                  <div class="col-4 pl-0">
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-sign-in view-button" (click)="viewForm(item, content)" type="button">
+                view
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mt-3 pl-0 pr-0">
+        <div class="mb-3">
+          <span class="text-danger">{{errorMessage}}</span>
+        </div>
+        <button class="btn btn-primary btn-w-100 content-right" (click)="createFormFromTemplate()"
+          [disabled]="!selectedTemplate">Choose Template<img class="ml-3" src="assets/icons-simustream/Arrow_Right.svg"
+            alt=""></button>
+        <button class="btn btn-gery-transparent  btn-w-100 btn-cancel" (click)="cancelFormCreation()"
+          [disabled]="isSubmit">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h3 class="mb-0">Lead Form</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <img src="assets/icons-simustream/cross.svg" alt="">
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row pl-3 pr-3">
+      <div class="col-12">
+        <span class="description-text pl-0">Form Details</span>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Name:</label>
+          <p>{{modalData.title}}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Display Name:</label>
+          <p>{{modalData.title2}}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group modal-group">
+          <label for="">Description:</label>
+          <p>{{modalData.description || 'None'}}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <span class="description-text pl-0">Thank You Page Details</span>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Title:</label>
+          <p>{{modalData.formSubmissionModal.title }}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Description:</label>
+          <p>{{modalData.formSubmissionModal.description  }}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <span class="description-text pl-0">Form Submission Details</span>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">Email:</label>
+          <p>{{modalData.formSubmissionDetails.email || 'None'}}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group modal-group">
+          <label for="">End Point:</label>
+          <p>{{modalData.formSubmissionDetails.endPoint || 'None' }}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <span class="description-text pl-0">Form Fields</span>
+        <table class="table bg" id="grid">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of modalData.fields ; let i = index">
+              <td style="width: 7%" class="img-scene pl-0"><span class="text">{{i+1}}.</span></td>
+              <td class="pl-0" style="width: 40%">
+                <span class="text"> {{item.label}}</span>
+              </td>
+              <td class="" style="width: 15%">
+                <span class="text"> {{item.validation.isRequired ? 'Required' : 'Not Required'}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-template>

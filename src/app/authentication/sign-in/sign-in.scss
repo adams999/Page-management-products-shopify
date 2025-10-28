@@ -1,0 +1,58 @@
+.sign-in-form-section{
+text-align: center;
+justify-content: center;
+display: flex;
+align-items: center;
+position: relative;
+height: 100vh;
+}
+
+.background-page{
+    background: #5579F3 !important
+}
+.pricingsideimgx{
+    position: absolute;
+    left: 0;
+    top: 35%;
+    width: 150px;
+  }
+  .pricingsideimgy{
+    position: absolute;
+    right: 0;
+    top: 35%;
+    width: 150px;
+  }
+  .pricingsideimg3{
+    display: none;
+  }
+
+  .logo-head{
+    position: absolute;
+    top: 25px;
+    padding-left: 90px;
+    padding-bottom: 25px;
+    .logo{
+        float: left;
+      }
+  }
+
+  .sign-box{
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 38px;
+    padding-bottom: 35px;
+  }
+  .errormsg{
+    color: #FF5342;
+    font-size:10px;
+    float:left;
+  }
+  .pwd_style{
+    margin-top: 20px
+  }
+  .custom_height{
+    height:40px
+  }
+  .flt_right{
+    float:right;
+  }

@@ -1,0 +1,48 @@
+.card {
+  cursor: pointer;
+  height: 199px;
+  margin-bottom: 15px;
+}
+
+.disables {
+  opacity: 0.6 !important;
+}
+
+.bt {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.add-field.fas {
+  color: #dfdfdf;
+  font-size: 99px;
+  color: #dfdfdf;
+  font-size: 99px;
+  top: 18%;
+  position: relative;
+}
+
+.field-section {
+  padding: 9px;
+}
+
+.form-group {
+  input.form-control.error-handling {
+    border-color: #ff5342 !important;
+    &:focus {
+      border-color: #ff5342 !important;
+    }
+  }
+}
+
+.view-button {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  font-size: 10px !important;
+  right: 19px !important;
+  position: absolute !important;
+  bottom: 19px !important;
+  &:hover {
+    background-color: #5579f3 !important;
+    color: #fff !important;
+  }
+}
